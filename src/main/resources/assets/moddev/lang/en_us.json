@@ -1,13 +1,4 @@
 {
-  "itemGroup.moddev": "Example Mod Tab",
-  "block.moddev.example_block": "Example Block",
-  "item.moddev.example_item": "Example Item",
-
-  "moddev.configuration.title": "Mod Dev Configs",
-  "moddev.configuration.section.moddev.common.toml": "Mod Dev Configs",
-  "moddev.configuration.section.moddev.common.toml.title": "Mod Dev Configs",
-  "moddev.configuration.items": "Item List",
-  "moddev.configuration.logDirtBlock": "Log Dirt Block",
-  "moddev.configuration.magicNumberIntroduction": "Magic Number Text",
-  "moddev.configuration.magicNumber": "Magic Number"
+  "item.moddev.tomato_seeds": "Tomato Seeds",
+  "item.moddev.tomato": "Tomato"
 }
