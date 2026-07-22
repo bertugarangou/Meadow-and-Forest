@@ -1,7 +1,8 @@
-package com.carqui.moddev;
+package net.carqui.meadowandforest;
 
-import com.carqui.moddev.item.ModItems;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.inventarytab.MAFInventoryTab;
+import net.carqui.meadowandforest.item.MAFItems;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -13,28 +14,31 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(ModDev.MOD_ID)
-public class ModDev {
+@Mod(MAF.MOD_ID)
+public class MAF {
     // Define mod id in a common place for everything to reference
-    public static final String MOD_ID = "moddev";
+    public static final String MOD_ID = "meadowandforest";
     // Directly reference a slf4j logger
     public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public ModDev(IEventBus modEventBus, ModContainer modContainer) {
+    public MAF(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        ModItems.register(modEventBus);
+        //carreguem les classes
+        MAFInventoryTab.register(modEventBus);
+        MAFItems.register(modEventBus);
+        MAFBlocks.Register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
+        // Comento linia pq no volem que estigui en un creative_tab random
+        //modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -42,15 +46,16 @@ public class ModDev {
     private void commonSetup(FMLCommonSetupEvent event) {
     }
 
+    /*
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
-            event.accept(ModItems.TOMATO_SEEDS);
+            event.accept(MAFItems.TOMATO_SEEDS);
         }
         if(event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
-            event.accept(ModItems.TOMATO);
+            event.accept(MAFItems.TOMATO);
         }
-    }
+    }*/
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
