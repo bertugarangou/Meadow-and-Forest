@@ -43,6 +43,10 @@ Please, open a Discussion. ❤ Ideas.
 ### Updates
 I will update the mod when I have the time. Please do not send a feature request or issue asking for updating the mod, I will skip it until I have time.
 
+### Translation
+//FALTA EXPLICAR COM ES GENERA UN NOU LANG.
+Language files are stored on `src/generated/resources/assets/meadowandforest/lang`.
+
 ## Can I add this mod to my modpack?
 - Yes, without asking me if you are building your own modpack.
 - Yes, but please ask on Discussions requesting permission if you are going to publish the modpack somewhere on Internet. Do not publish a modpack without prior notice and acceptance.
