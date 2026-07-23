@@ -18,5 +18,6 @@ public class MAFDataGen {
         generator.addProvider(true, new MAFModelProvider(packOutput));
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "en_us"));
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "ca_es"));
+        generator.addProvider(true, new MAFLanguageProvider(packOutput, "es_es"));
     }
 }
