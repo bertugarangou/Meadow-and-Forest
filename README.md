@@ -1,8 +1,8 @@
 
-# TITOL
+# Meadow and Forest
 //imatge 
 
-A Minecraft mod that adds new content for meadows, plains and forests.  
+A Minecraft mod that adds new content for meadows, plains and forests while keeping the vanilla style.
 
 ## Downloading and installation
 ### Option A) Manual installation
