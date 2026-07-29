@@ -2,7 +2,7 @@
 # Meadow and Forest
 //imatge 
 
-A Minecraft mod that adds new content for meadows, plains and forests while keeping the vanilla style.
+A Minecraft mod that adds new content for meadows, plains, and forests while keeping the vanilla style.
 
 ## Downloading and installation
 ### Option A) Manual installation
@@ -52,10 +52,10 @@ Language files are stored on `src/generated/resources/assets/meadowandforest/lan
 - Yes, but please ask on Discussions requesting permission if you are going to publish the modpack somewhere on Internet. Do not publish a modpack without prior notice and acceptance.
 
 ## License
-This project is licensed under the GNU GPL v3. You are free to use, modify, and redistribute it, provided that any distributed modifications are also licensed under GPL v3 and the corresponding source code is made available. See LICENSE.md for the full license terms.  
-
-See `LIECENSE.md` for details.
+This project is licensed under the GNU GPL v3. You are free to use, modify, and redistribute it, provided that any distributed modifications are also licensed under GPL v3 and the corresponding source code is made available.
+This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. Use this software at your own risk.
+See `LIECENSE.md` file included with this project for the complete license terms or check [https://www.gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
 
 
 ## Credits
-Copyright © 2026 Albert Garangou aka "Carquinyolis"
+Code made by Carqui (Albert Garangou) and art by Júlia Socoró and Carqui
