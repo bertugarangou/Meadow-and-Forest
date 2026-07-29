@@ -1,7 +1,6 @@
 package net.carqui.meadowandforest.inventarytab;
 
 import net.carqui.meadowandforest.MAF;
-import net.carqui.meadowandforest.block.MAFBlocks;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -25,9 +24,16 @@ public class MAFInventoryTab {
                     .title(Component.translatable("creativetab.meadowandforest.tab_items"))
                     .displayItems((itemDisplayParameters, output) -> {
 
+                        output.accept(MAFItems.CANE);
+                        output.accept(MAFItems.HALF_BREAD);
+                        output.accept(MAFItems.PA_AMB_TOMATA);
+                        output.accept(MAFItems.SLICE_OF_BREAD);
                         output.accept(MAFItems.TOMATO);
                         output.accept(MAFItems.TOMATO_SEEDS);
-                        output.accept(MAFBlocks.BLOCK_NAME);
+                        output.accept(MAFItems.TOMATO_SOUP);
+                        output.accept(MAFItems.VINE_TOMATO);
+                        output.accept(MAFItems.WHOLE_BREAD);
+                        output.accept(MAFItems.XAVA_ABERRATION);
 
                     }).build());
 }

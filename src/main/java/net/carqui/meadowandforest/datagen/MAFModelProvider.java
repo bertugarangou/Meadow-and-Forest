@@ -8,6 +8,7 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.BlockItem;
 
 public class MAFModelProvider extends ModelProvider {
     public MAFModelProvider(PackOutput output) {
@@ -16,11 +17,16 @@ public class MAFModelProvider extends ModelProvider {
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-         //ITEMS
-         itemModels.generateFlatItem(MAFItems.TOMATO_SEEDS.get(), ModelTemplates.FLAT_ITEM);
-         itemModels.generateFlatItem(MAFItems.TOMATO.get(), ModelTemplates.FLAT_ITEM);
+         //ITEMS - Generate models for all non-block items dynamically
+         MAFItems.ITEMS.getEntries().forEach(item -> {
+             if (!(item.get() instanceof BlockItem)) {
+                 itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM);
+             }
+         });
 
-        //BLOCKS
-        blockModels.createTrivialCube(MAFBlocks.BLOCK_NAME.get());
+        //BLOCKS - Generate models for all blocks dynamically
+        MAFBlocks.BLOCKS.getEntries().forEach(block ->
+            blockModels.createTrivialCube(block.get())
+        );
     }
 }
