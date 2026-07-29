@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 75,
+  "experience": 0.07,
+  "group": "bread",
+  "ingredient": "meadowandforest:bread_dough",
+  "result": {
+    "id": "minecraft:bread"
+  }
+}

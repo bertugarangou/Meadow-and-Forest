@@ -17,14 +17,14 @@ public class MAFModelProvider extends ModelProvider {
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-         //ITEMS - Generate models for all non-block items dynamically
+
          MAFItems.ITEMS.getEntries().forEach(item -> {
              if (!(item.get() instanceof BlockItem)) {
                  itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM);
              }
          });
 
-        //BLOCKS - Generate models for all blocks dynamically
+
         MAFBlocks.BLOCKS.getEntries().forEach(block ->
             blockModels.createTrivialCube(block.get())
         );

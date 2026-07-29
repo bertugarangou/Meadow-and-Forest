@@ -16,7 +16,7 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        dropSelf(MAFBlocks.BLOCK_NAME.get());
+        //dropSelf(MAFBlocks.BLOCK_NAME.get());
 
     }
 

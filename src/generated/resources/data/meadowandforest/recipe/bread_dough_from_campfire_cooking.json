@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 225,
+  "experience": 0.07,
+  "group": "bread",
+  "ingredient": "meadowandforest:bread_dough",
+  "result": {
+    "id": "minecraft:bread"
+  }
+}

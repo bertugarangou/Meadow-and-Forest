@@ -1,13 +1,14 @@
 {
   "creativetab.meadowandforest.tab_items": "Meadow and Forest",
+  "item.meadowandforest.cane": "Caña",
+  "item.meadowandforest.half_a_bread": "Pan de medio",
+  "item.meadowandforest.pa_amb_tomata": "Pan con tomate",
+  "item.meadowandforest.slice_of_bread": "Rebanada de pan",
   "item.meadowandforest.tomato": "Tomate",
   "item.meadowandforest.tomato_seeds": "Semillas de tomate",
-  "item.meadowandforest.vine_tomato": "Tomate de untar",
-  "item.meadowandforest.cane": "Caña",
   "item.meadowandforest.tomato_soup": "Sopa de tomate",
-  "item.meadowandforest.half_a_bread": "Pan de medio",
+  "item.meadowandforest.vine_tomato": "Tomate de untar",
   "item.meadowandforest.whole_bread": "Pan de kilo",
-  "item.meadowandforest.slice_of_bread": "Rebanada de pan",
-  "item.meadowandforest.pa_amb_tomata": "Pan con tomate",
-  "item.meadowandforest.xava_aberration": "Aberración xava"
+  "item.meadowandforest.xava_aberration": "Aberración xava",
+  "item.meadowandforest.bread_dough": "Masa de pan"
 }

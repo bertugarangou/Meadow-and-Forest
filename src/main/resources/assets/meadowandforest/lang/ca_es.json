@@ -1,14 +1,14 @@
 {
   "creativetab.meadowandforest.tab_items": "Meadow and Forest",
+  "item.meadowandforest.cane": "Canya",
+  "item.meadowandforest.half_a_bread": "Pa de mig",
+  "item.meadowandforest.pa_amb_tomata": "Pa amb tomata",
+  "item.meadowandforest.slice_of_bread": "Tall de pa",
   "item.meadowandforest.tomato": "Tomata",
   "item.meadowandforest.tomato_seeds": "Llavors de tomata",
-  "item.meadowandforest.vine_tomato": "Tomata de sucar",
-  "item.meadowandforest.cane": "Canya",
   "item.meadowandforest.tomato_soup": "Sopa de tomata",
-  "item.meadowandforest.half_a_bread": "Pa de mig",
+  "item.meadowandforest.vine_tomato": "Tomata de sucar",
   "item.meadowandforest.whole_bread": "Pa de quilo",
-  "item.meadowandforest.slice_of_bread": "Tall de pa",
-  "item.meadowandforest.pa_amb_tomata": "Pa amb tomata",
   "item.meadowandforest.xava_aberration": "Aberració xava",
-  "block.meadowandforest.block_name": "Nom del bloc"
+  "item.meadowandforest.bread_dough": "Massa de farina"
 }

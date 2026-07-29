@@ -1,9 +1,6 @@
 package net.carqui.meadowandforest;
 
-import net.carqui.meadowandforest.datagen.MAFBlockLootTableProvider;
-import net.carqui.meadowandforest.datagen.MAFBlockTagsProvider;
-import net.carqui.meadowandforest.datagen.MAFLanguageProvider;
-import net.carqui.meadowandforest.datagen.MAFModelProvider;
+import net.carqui.meadowandforest.datagen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
@@ -32,5 +29,7 @@ public class MAFDataGen {
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "en_us"));
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "ca_es"));
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "es_es"));
+
+        generator.addProvider(true, new MAFRecipes.Runner(packOutput, lookupProvider));
     }
 }

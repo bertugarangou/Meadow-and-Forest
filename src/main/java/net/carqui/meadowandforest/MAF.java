@@ -1,6 +1,7 @@
 package net.carqui.meadowandforest;
 
 import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.datagen.MAFRecipes;
 import net.carqui.meadowandforest.inventarytab.MAFInventoryTab;
 import net.carqui.meadowandforest.item.MAFItems;
 import org.slf4j.Logger;

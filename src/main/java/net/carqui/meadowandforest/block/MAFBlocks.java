@@ -29,13 +29,5 @@ public class MAFBlocks {
         return (toReturn);
     }
 
-    public static final DeferredBlock<Block> BLOCK_NAME = registerBlock("block_name", properties -> new Block(properties
-            .strength(4f)
-            .requiresCorrectToolForDrops()
-            .sound(SoundType.BAMBOO)));
-
-
-
-
 
 }

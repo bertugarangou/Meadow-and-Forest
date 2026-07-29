@@ -1,7 +1,5 @@
 {
-  "block.meadowandforest.block_name": "Block Name",
   "creativetab.meadowandforest.tab_items": "Meadow And Forest",
-  "item.meadowandforest.block_name": "Block Name",
   "item.meadowandforest.cane": "Cane",
   "item.meadowandforest.half_a_bread": "Half A Bread",
   "item.meadowandforest.pa_amb_tomata": "Pa Amb Tomata",
@@ -11,5 +9,6 @@
   "item.meadowandforest.tomato_soup": "Tomato Soup",
   "item.meadowandforest.vine_tomato": "Vine Tomato",
   "item.meadowandforest.whole_bread": "Whole Bread",
-  "item.meadowandforest.xava_aberration": "Xava Aberration"
+  "item.meadowandforest.xava_aberration": "Xava Aberration",
+  "item.meadowandforest.bread_dough": "Bread Dough"
 }
