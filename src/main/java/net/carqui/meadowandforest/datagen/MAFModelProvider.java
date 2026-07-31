@@ -9,6 +9,7 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.CropBlock;
 
 public class MAFModelProvider extends ModelProvider {
     public MAFModelProvider(PackOutput output) {
@@ -18,15 +19,23 @@ public class MAFModelProvider extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 
-         MAFItems.ITEMS.getEntries().forEach(item -> {
-             if (!(item.get() instanceof BlockItem)) {
-                 itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM);
-             }
-         });
+        //items
+        MAFItems.ITEMS.getEntries().forEach(item -> {
+            if (!(item.get() instanceof BlockItem)) {
+                itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM);
+            }
+        });
 
 
-        MAFBlocks.BLOCKS.getEntries().forEach(block ->
-            blockModels.createTrivialCube(block.get())
-        );
+
+        //blocks
+        MAFBlocks.BLOCKS.getEntries().forEach(block -> {
+            if (block.get() != MAFBlocks.TOMATO_CROP.get()) {
+                blockModels.createTrivialCube(block.get());
+            }
+        });
+
+        blockModels.createCropBlock(MAFBlocks.TOMATO_CROP.get(), CropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
     }
+
 }
