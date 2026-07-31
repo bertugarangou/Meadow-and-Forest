@@ -41,7 +41,7 @@ public class MAFRecipes extends RecipeProvider {
     @Override
     protected void buildRecipes() {
 
-        shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SEEDS.get())
+        shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SEEDS.get(), 3)
                 .requires(MAFItems.TOMATO)
                 .unlockedBy(getHasName(MAFItems.TOMATO_SEEDS.get()), has(MAFItems.TOMATO_SEEDS))
                 .group("tomato_seeds")
