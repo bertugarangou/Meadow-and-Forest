@@ -100,6 +100,11 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(MAFItems.HALF_BREAD.get()), has(MAFItems.HALF_BREAD.get()))
                 .group("slice_of_bread")
                 .save(output, "slice_of_bread_from_half_bread");
+        shapeless(RecipeCategory.FOOD, MAFItems.SLICE_OF_BREAD.get(), 6)
+                .requires(Items.BREAD)
+                .unlockedBy(getHasName(Items.BREAD), has(Items.BREAD))
+                .group("slice_of_bread")
+                .save(output, "slice_of_bread_from_minecraftbread");
 
         //breaddough cooking
         cookingRecipes(output, CookingKind.FOOD, "small_bread_breaddough", MAFItems.SMALL_BREAD_BREADDOUGH.get(), MAFItems.HALF_BREAD, 0.1f, 160, "small_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
