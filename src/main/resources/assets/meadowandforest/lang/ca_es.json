@@ -7,8 +7,11 @@
   "item.meadowandforest.tomato": "Tomata",
   "item.meadowandforest.tomato_seeds": "Llavors de tomata",
   "item.meadowandforest.tomato_soup": "Sopa de tomata",
-  "item.meadowandforest.vine_tomato": "Tomata de sucar",
+  "item.meadowandforest.vine_tomato": "Tomata de penjar",
   "item.meadowandforest.whole_bread": "Pa de quilo",
   "item.meadowandforest.xava_aberration": "Aberració xava",
-  "item.meadowandforest.bread_dough": "Massa de farina"
+  "item.meadowandforest.baguette_bread_breaddough": "Massa de barra de pa",
+  "item.meadowandforest.big_bread_breaddough": "Massa de pa de quilo",
+  "item.meadowandforest.breaddough": "Bola de massa",
+  "item.meadowandforest.small_bread_breaddough": "Massa de pa de mig"
 }

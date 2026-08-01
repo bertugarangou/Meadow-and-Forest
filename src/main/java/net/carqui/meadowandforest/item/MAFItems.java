@@ -24,7 +24,10 @@ public class MAFItems {
     public static final DeferredItem<Item> SLICE_OF_BREAD = ITEMS.registerSimpleItem("slice_of_bread");
     public static final DeferredItem<Item> PA_AMB_TOMATA = ITEMS.registerSimpleItem("pa_amb_tomata");
     public static final DeferredItem<Item> XAVA_ABERRATION = ITEMS.registerSimpleItem("xava_aberration");
-    public static final DeferredItem<Item> BREAD_DOUGH = ITEMS.registerSimpleItem("bread_dough");
+    public static final DeferredItem<Item> BREADDOUGH = ITEMS.registerSimpleItem("breaddough");
+    public static final DeferredItem<Item> SMALL_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("small_bread_breaddough");
+    public static final DeferredItem<Item> BIG_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("big_bread_breaddough");
+    public static final DeferredItem<Item> BAGUETTE_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("baguette_bread_breaddough");
 
 
     public static void register(IEventBus eventBus) {

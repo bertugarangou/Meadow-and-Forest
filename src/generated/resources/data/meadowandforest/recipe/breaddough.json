@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "breaddough",
+  "ingredients": [
+    "minecraft:wheat"
+  ],
+  "result": {
+    "id": "meadowandforest:breaddough"
+  }
+}

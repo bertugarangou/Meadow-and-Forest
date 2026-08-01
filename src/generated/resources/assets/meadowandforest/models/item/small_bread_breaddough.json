@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "meadowandforest:item/bread_dough"
+    "layer0": "meadowandforest:item/small_bread_breaddough"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 80,
+  "experience": 0.1,
+  "group": "small_bread_breaddough",
+  "ingredient": "meadowandforest:small_bread_breaddough",
+  "result": {
+    "id": "meadowandforest:half_a_bread"
+  }
+}

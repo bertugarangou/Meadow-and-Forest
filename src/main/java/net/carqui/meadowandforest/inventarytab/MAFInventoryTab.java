@@ -34,7 +34,10 @@ public class MAFInventoryTab {
                         output.accept(MAFItems.VINE_TOMATO);
                         output.accept(MAFItems.WHOLE_BREAD);
                         output.accept(MAFItems.XAVA_ABERRATION);
-                        output.accept(MAFItems.BREAD_DOUGH);
+                        output.accept(MAFItems.BAGUETTE_BREAD_BREADDOUGH);
+                        output.accept(MAFItems.BIG_BREAD_BREADDOUGH);
+                        output.accept(MAFItems.SMALL_BREAD_BREADDOUGH);
+                        output.accept(MAFItems.BREADDOUGH);
 
 
                     }).build());

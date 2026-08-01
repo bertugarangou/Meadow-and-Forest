@@ -41,12 +41,49 @@ public class MAFRecipes extends RecipeProvider {
     @Override
     protected void buildRecipes() {
 
+        //tomato seeds from tomato
         shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SEEDS.get(), 3)
                 .requires(MAFItems.TOMATO)
                 .unlockedBy(getHasName(MAFItems.TOMATO_SEEDS.get()), has(MAFItems.TOMATO_SEEDS))
                 .group("tomato_seeds")
                 .save(output /*, "meadowandforest:tomato_seeds"*/);
 
+        //bread dough from wheat
+        shapeless(RecipeCategory.FOOD, MAFItems.BREADDOUGH.get(), 1)
+                .requires(Items.WHEAT)
+                .unlockedBy(getHasName(Items.WHEAT), has(Items.WHEAT))
+                .group("breaddough")
+                .save(output);
+
+        //small, big and baguette bread dough
+        shaped(RecipeCategory.FOOD, MAFItems.SMALL_BREAD_BREADDOUGH.get(),1)
+                .pattern("BB ")
+                .pattern("   ")
+                .pattern("   ")
+                .define('B', MAFItems.BREADDOUGH.get())
+                .unlockedBy(getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()))
+                .group("small_breaddough")
+                .save(output);
+
+        shaped(RecipeCategory.FOOD, MAFItems.BIG_BREAD_BREADDOUGH.get(),1)
+                .pattern("BB ")
+                .pattern("BB ")
+                .pattern("   ")
+                .define('B', MAFItems.BREADDOUGH.get())
+                .unlockedBy(getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()))
+                .group("big_breaddough")
+                .save(output);
+
+        shaped(RecipeCategory.FOOD, MAFItems.BAGUETTE_BREAD_BREADDOUGH.get(),1)
+                .pattern("BBB")
+                .pattern("   ")
+                .pattern("   ")
+                .define('B', MAFItems.BREADDOUGH.get())
+                .unlockedBy(getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()))
+                .group("baguette_breaddough")
+                .save(output);
+
+        //delete minecraft default bread recipe
         shaped(RecipeCategory.FOOD, Items.BREAD)
                 .pattern("WWW")
                 .define('W', Items.WHEAT)
@@ -54,8 +91,14 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy("never", has(Items.WHEAT))
                 .save(output.withConditions(NeoForgeConditions.never()));
 
-        cookingRecipes(output, CookingKind.FOOD, "bread", MAFItems.BREAD_DOUGH.get(), Items.BREAD, 0.07F, 75, "bread_dough", "bread", this.has(MAFItems.BREAD_DOUGH.get()));
 
+
+        //breaddough cooking
+        cookingRecipes(output, CookingKind.FOOD, "small_bread_breaddough", MAFItems.SMALL_BREAD_BREADDOUGH.get(), MAFItems.HALF_BREAD, 0.1f, 160, "small_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
+        cookingRecipes(output, CookingKind.FOOD, "big_bread_breaddough", MAFItems.BIG_BREAD_BREADDOUGH.get(), MAFItems.WHOLE_BREAD, 0.2f, 160, "big_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
+        cookingRecipes(output, CookingKind.FOOD, "baguette_bread_breaddough", MAFItems.BAGUETTE_BREAD_BREADDOUGH.get(), Items.BREAD, 0.15f, 160, "baguette", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
+
+        //cane recipe from sticks
         shaped(RecipeCategory.MISC, MAFItems.CANE.get())
                 .pattern(" S ")
                 .pattern("S S")
@@ -68,10 +111,9 @@ public class MAFRecipes extends RecipeProvider {
 
     }
 
-    public enum CookingKind {
-        FOOD,
-        ORE
-    }
+
+    //cooking helper class and utils
+    public enum CookingKind { FOOD, ORE, GENERIC }
 
     protected void cookingRecipes(RecipeOutput output,
                                   CookingKind category,
@@ -80,10 +122,9 @@ public class MAFRecipes extends RecipeProvider {
                                   ItemLike result,
                                   float exp,
                                   int smeltingTime,
-                                  String recipeIdBase,
+                                  String RecipeFileName,
                                   String criterionName,
                                   Criterion<?> criterion) {
-
         Ingredient input = Ingredient.of(ingredient);
 
         RecipeCategory recipeCategory = (category == CookingKind.FOOD) ? RecipeCategory.FOOD : RecipeCategory.MISC;
@@ -92,24 +133,25 @@ public class MAFRecipes extends RecipeProvider {
         SimpleCookingRecipeBuilder.smelting(input, recipeCategory, bookCategory, result, exp, smeltingTime)
                 .unlockedBy(criterionName, criterion)
                 .group(group)
-                .save(output, MAF.MOD_ID + ":" + recipeIdBase + "_from_smelting");
+                .save(output, MAF.MOD_ID + ":" + RecipeFileName + "_from_smelting");
 
         if (category == CookingKind.FOOD) {
             SimpleCookingRecipeBuilder.smoking(input, recipeCategory, result, exp, smeltingTime / 2)
                     .unlockedBy(criterionName, criterion)
                     .group(group)
-                    .save(output, MAF.MOD_ID + ":" + recipeIdBase + "_from_smoking");
+                    .save(output, MAF.MOD_ID + ":" + RecipeFileName + "_from_smoking");
 
             SimpleCookingRecipeBuilder.campfireCooking(input, recipeCategory, result, exp, smeltingTime * 3)
                     .unlockedBy(criterionName, criterion)
                     .group(group)
-                    .save(output, MAF.MOD_ID + ":" + recipeIdBase + "_from_campfire_cooking");
-        } else {
+                    .save(output, MAF.MOD_ID + ":" + RecipeFileName + "_from_campfire_cooking");
+        } else if (category == CookingKind.ORE) {
             SimpleCookingRecipeBuilder.blasting(input, recipeCategory, bookCategory, result, exp, (smeltingTime / 2))
                     .unlockedBy(criterionName, criterion)
                     .group(group)
-                    .save(output, MAF.MOD_ID + ":" + recipeIdBase + "_from_blasting");
+                    .save(output, MAF.MOD_ID + ":" + RecipeFileName + "_from_blasting");
         }
+        //no case for GENERIC
     }
 
 

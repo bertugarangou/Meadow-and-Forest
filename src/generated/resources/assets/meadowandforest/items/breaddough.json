@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "meadowandforest:item/bread_dough"
+    "model": "meadowandforest:item/breaddough"
   }
 }

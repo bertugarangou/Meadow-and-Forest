@@ -7,8 +7,11 @@
   "item.meadowandforest.tomato": "Tomate",
   "item.meadowandforest.tomato_seeds": "Semillas de tomate",
   "item.meadowandforest.tomato_soup": "Sopa de tomate",
-  "item.meadowandforest.vine_tomato": "Tomate de untar",
+  "item.meadowandforest.vine_tomato": "Tomate de colgar",
   "item.meadowandforest.whole_bread": "Pan de kilo",
   "item.meadowandforest.xava_aberration": "Aberración xava",
-  "item.meadowandforest.bread_dough": "Masa de pan"
+  "item.meadowandforest.baguette_bread_breaddough": "Masa de barra de pan",
+  "item.meadowandforest.big_bread_breaddough": "Masa de pan de kilo",
+  "item.meadowandforest.breaddough": "Bola de masa",
+  "item.meadowandforest.small_bread_breaddough": "Masa de pan de medio"
 }

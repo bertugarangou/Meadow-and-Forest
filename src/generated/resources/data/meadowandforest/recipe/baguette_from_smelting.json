@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 160,
+  "experience": 0.15,
+  "group": "baguette_bread_breaddough",
+  "ingredient": "meadowandforest:baguette_bread_breaddough",
+  "result": {
+    "id": "minecraft:bread"
+  }
+}

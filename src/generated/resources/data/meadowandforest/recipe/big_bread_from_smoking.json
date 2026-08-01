@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 80,
+  "experience": 0.2,
+  "group": "big_bread_breaddough",
+  "ingredient": "meadowandforest:big_bread_breaddough",
+  "result": {
+    "id": "meadowandforest:whole_bread"
+  }
+}
