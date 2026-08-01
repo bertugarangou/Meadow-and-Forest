@@ -64,7 +64,6 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()))
                 .group("small_breaddough")
                 .save(output);
-
         shaped(RecipeCategory.FOOD, MAFItems.BIG_BREAD_BREADDOUGH.get(),1)
                 .pattern("BB ")
                 .pattern("BB ")
@@ -73,7 +72,6 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()))
                 .group("big_breaddough")
                 .save(output);
-
         shaped(RecipeCategory.FOOD, MAFItems.BAGUETTE_BREAD_BREADDOUGH.get(),1)
                 .pattern("BBB")
                 .pattern("   ")
@@ -91,7 +89,17 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy("never", has(Items.WHEAT))
                 .save(output.withConditions(NeoForgeConditions.never()));
 
-
+        //slice of bread
+        shapeless(RecipeCategory.FOOD, MAFItems.SLICE_OF_BREAD.get(), 8)
+                .requires(MAFItems.WHOLE_BREAD.get())
+                .unlockedBy(getHasName(MAFItems.WHOLE_BREAD.get()), has(MAFItems.WHOLE_BREAD.get()))
+                .group("slice_of_bread")
+                .save(output, "slice_of_bread_from_whole_bread");
+        shapeless(RecipeCategory.FOOD, MAFItems.SLICE_OF_BREAD.get(), 4)
+                .requires(MAFItems.HALF_BREAD.get())
+                .unlockedBy(getHasName(MAFItems.HALF_BREAD.get()), has(MAFItems.HALF_BREAD.get()))
+                .group("slice_of_bread")
+                .save(output, "slice_of_bread_from_half_bread");
 
         //breaddough cooking
         cookingRecipes(output, CookingKind.FOOD, "small_bread_breaddough", MAFItems.SMALL_BREAD_BREADDOUGH.get(), MAFItems.HALF_BREAD, 0.1f, 160, "small_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));

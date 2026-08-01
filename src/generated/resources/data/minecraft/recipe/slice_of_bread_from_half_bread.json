@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "slice_of_bread",
+  "ingredients": [
+    "meadowandforest:half_a_bread"
+  ],
+  "result": {
+    "count": 4,
+    "id": "meadowandforest:slice_of_bread"
+  }
+}
