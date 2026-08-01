@@ -1,12 +1,23 @@
 package net.carqui.meadowandforest;
 
 import net.carqui.meadowandforest.datagen.*;
+import net.carqui.meadowandforest.item.MAFItems;
+import net.carqui.meadowandforest.loot.SeedSwapLootModifier;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
+import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.Collections;
@@ -14,6 +25,11 @@ import java.util.List;
 
 @EventBusSubscriber(modid = MAF.MOD_ID)
 public class MAFDataGen {
+
+    // Vanilla's block loot table for the short grass plant.
+    private static final ResourceKey<LootTable> SHORT_GRASS_LOOT_TABLE = ResourceKey.create(
+            Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("minecraft", "blocks/short_grass"));
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
@@ -31,5 +47,24 @@ public class MAFDataGen {
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "es_es"));
 
         generator.addProvider(true, new MAFRecipes.Runner(packOutput, lookupProvider));
+
+        // Grass sometimes drops tomato seeds instead of wheat seeds (1/4 of the time it would drop seeds at all).
+        generator.addProvider(true, new GlobalLootModifierProvider(packOutput, lookupProvider, MAF.MOD_ID) {
+            @Override
+            protected void start() {
+                this.add(
+                        "tomato_seeds_from_grass",
+                        new SeedSwapLootModifier(
+                                new LootItemCondition[] {
+                                        LootTableIdCondition.builder(SHORT_GRASS_LOOT_TABLE.identifier()).build(),
+                                        LootItemRandomChanceCondition.randomChance(015F).build()
+                                },
+                                1000,
+                                Items.WHEAT_SEEDS,
+                                MAFItems.TOMATO_SEEDS.get()
+                        )
+                );
+            }
+        });
     }
 }
