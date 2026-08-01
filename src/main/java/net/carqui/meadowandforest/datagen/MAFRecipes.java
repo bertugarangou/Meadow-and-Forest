@@ -121,9 +121,7 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(output);
 
-
     }
-
 
     //cooking helper class and utils
     public enum CookingKind { FOOD, ORE, GENERIC }

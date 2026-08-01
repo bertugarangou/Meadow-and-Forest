@@ -26,8 +26,6 @@ public class MAFModelProvider extends ModelProvider {
             }
         });
 
-
-
         //blocks
         MAFBlocks.BLOCKS.getEntries().forEach(block -> {
             if (block.get() != MAFBlocks.TOMATO_CROP.get()) {

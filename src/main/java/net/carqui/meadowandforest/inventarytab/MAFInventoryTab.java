@@ -39,6 +39,5 @@ public class MAFInventoryTab {
                         output.accept(MAFItems.SMALL_BREAD_BREADDOUGH);
                         output.accept(MAFItems.BREADDOUGH);
 
-
                     }).build());
 }

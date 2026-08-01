@@ -11,14 +11,6 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
 
-/**
- * A generic global loot modifier that swaps any occurrence of {@code from} in the
- * generated loot for {@code to}, preserving the stack count.
- * <p>
- * This is used, for example, to make grass sometimes drop tomato seeds instead of
- * wheat seeds without touching vanilla's own loot table (see {@code neoforge:loot_table_id}
- * and {@code minecraft:random_chance} conditions on the modifier instance for the actual odds).
- */
 public class SeedSwapLootModifier extends LootModifier {
     public static final MapCodec<SeedSwapLootModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             codecStart(inst).and(inst.group(
