@@ -6,7 +6,7 @@
       "loot_table_id": "minecraft:blocks/short_grass"
     },
     {
-      "chance": 0.25,
+      "chance": 15.0,
       "condition": "minecraft:random_chance"
     }
   ],

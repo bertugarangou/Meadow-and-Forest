@@ -56,18 +56,22 @@ public class MAFRecipes extends RecipeProvider {
 
         cookingRecipes(output, CookingKind.FOOD, "bread", MAFItems.BREAD_DOUGH.get(), Items.BREAD, 0.07F, 75, "bread_dough", "bread", this.has(MAFItems.BREAD_DOUGH.get()));
 
-
-
+        shaped(RecipeCategory.MISC, MAFItems.CANE.get())
+                .pattern(" S ")
+                .pattern("S S")
+                .pattern("   ")
+                .group("cane")
+                .define('S', Items.STICK)
+                .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
+                .save(output);
 
 
     }
-
 
     public enum CookingKind {
         FOOD,
         ORE
     }
-
 
     protected void cookingRecipes(RecipeOutput output,
                                   CookingKind category,
