@@ -27,7 +27,7 @@ public class MAFItems {
                     .build()));
     public static final DeferredItem<Item> VINE_TOMATO = ITEMS.registerSimpleItem("vine_tomato",
             props -> props.food(new FoodProperties.Builder()
-                    .nutrition(2)
+                    .nutrition(1)
                     .saturationModifier(0.4f)
                     .build()));
     public static final DeferredItem<Item> CANE = ITEMS.registerSimpleItem("cane");
@@ -53,19 +53,19 @@ public class MAFItems {
                     .build()));
     public static final DeferredItem<Item> PA_AMB_TOMATA = ITEMS.registerSimpleItem("pa_amb_tomata",
             props -> props.food(new FoodProperties.Builder()
-                    .nutrition(7)
+                    .nutrition(2)
                     .saturationModifier(0.7f)
                     .alwaysEdible()
                     .build()));
     public static final DeferredItem<Item> XAVA_ABERRATION = ITEMS.registerSimpleItem("xava_aberration",
             props -> props.food(
                     new FoodProperties.Builder()
-                            .nutrition(4)
+                            .nutrition(2)
                             .saturationModifier(0.1f)
                             .alwaysEdible()
                             .build(),
                     Consumables.defaultFood()
-                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 160, 0), 0.8f))
+                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 160, 0), 0.6f))
                             .build()));
     public static final DeferredItem<Item> BREADDOUGH = ITEMS.registerSimpleItem("breaddough");
     public static final DeferredItem<Item> SMALL_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("small_bread_breaddough");

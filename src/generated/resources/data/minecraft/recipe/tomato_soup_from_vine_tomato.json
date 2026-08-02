@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "tomato_soup",
+  "ingredients": [
+    "meadowandforest:vine_tomato",
+    "meadowandforest:vine_tomato",
+    "meadowandforest:vine_tomato",
+    "meadowandforest:vine_tomato",
+    "meadowandforest:vine_tomato",
+    "meadowandforest:vine_tomato",
+    "minecraft:bowl"
+  ],
+  "result": {
+    "id": "meadowandforest:tomato_soup"
+  }
+}
