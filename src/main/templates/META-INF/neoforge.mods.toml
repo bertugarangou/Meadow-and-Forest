@@ -8,8 +8,8 @@ displayName="${mod_name}"
 #updateJSONURL="https://change.me.example.invalid/updates.json" #optional
 displayURL="https://github.com/bertugarangou/Meadow-and-Forest/wiki"
 logoFile="logo.png"
-credits="Code made by Carqui (Albert Garangou) and art by Júlia Socoró and Carqui"
-authors="Carqui (Albert Garangou)"
+credits="Check GitHub link for credits."
+authors="Carqui (Albert Garangou)."
 description='''
 A Minecraft mod that adds new content for meadows, plains and forests.
 '''
