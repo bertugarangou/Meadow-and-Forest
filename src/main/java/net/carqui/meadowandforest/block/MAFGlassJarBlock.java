@@ -58,23 +58,58 @@ public class MAFGlassJarBlock extends CandleBlock {
     public static class InteractionHandler {
         @SubscribeEvent
         public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-            if (event.getLevel().isClientSide()) {
-                return;
-            }
-
+            boolean clientSide = event.getLevel().isClientSide();
             var targetState = event.getLevel().getBlockState(event.getPos());
-            if (!targetState.is(net.minecraft.world.level.block.Blocks.FIREFLY_BUSH)) {
-                return;
-            }
-
             ItemStack stack = event.getItemStack();
-            if (!stack.is(MAFBlocks.GLASS_JAR.get().asItem())) {
+            if (!isGlassJar(stack)) {
                 return;
             }
 
-            stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, true));
+            BlockItemStateProperties jarState = stack.getOrDefault(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY);
+            boolean fireflyInside = Boolean.TRUE.equals(jarState.get(FIREFLY_INSIDE));
+
+            if (targetState.is(net.minecraft.world.level.block.Blocks.FIREFLY_BUSH)) {
+                if (fireflyInside) {
+                    return;
+                }
+
+                stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, true));
+                event.setCancellationResult(InteractionResult.SUCCESS);
+                event.setCanceled(true);
+                return;
+            }
+
+            if (targetState.is(net.minecraft.world.level.block.Blocks.TALL_GRASS)) {
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
+
+            if (!targetState.is(net.minecraft.world.level.block.Blocks.SHORT_GRASS)) {
+                return;
+            }
+
+            if (!fireflyInside) {
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
+
+            if (!clientSide) {
+                event.getLevel().setBlockAndUpdate(event.getPos(), net.minecraft.world.level.block.Blocks.FIREFLY_BUSH.defaultBlockState());
+            }
+            stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, false));
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
+        }
+
+        private static boolean isGlassJar(ItemStack stack) {
+            for (MAFGlassJarVariants.Variant variant : MAFGlassJarVariants.ALL) {
+                if (stack.is(MAFBlocks.GLASS_JARS.get(variant.registryName()).get().asItem())) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
