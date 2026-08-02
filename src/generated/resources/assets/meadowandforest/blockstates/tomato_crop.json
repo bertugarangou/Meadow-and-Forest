@@ -1,28 +1,100 @@
 {
   "variants": {
-    "age=0": {
+    "age=0,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage0"
     },
-    "age=1": {
+    "age=0,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage0"
+    },
+    "age=0,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=0,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=1,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage1"
     },
-    "age=2": {
+    "age=1,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage1"
+    },
+    "age=1,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=1,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=2,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage2"
     },
-    "age=3": {
+    "age=2,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage2"
+    },
+    "age=2,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=2,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=3,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage3"
     },
-    "age=4": {
+    "age=3,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage3"
+    },
+    "age=3,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=3,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=4,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage4"
     },
-    "age=5": {
+    "age=4,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage4"
+    },
+    "age=4,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=4,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=5,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage5"
     },
-    "age=6": {
+    "age=5,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage5"
+    },
+    "age=5,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=5,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=6,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage6"
     },
-    "age=7": {
+    "age=6,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage6"
+    },
+    "age=6,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=6,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=7,half=lower,trellised=false": {
       "model": "meadowandforest:block/tomato_crop_stage7"
+    },
+    "age=7,half=lower,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_stage7"
+    },
+    "age=7,half=upper,trellised=false": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
+    },
+    "age=7,half=upper,trellised=true": {
+      "model": "meadowandforest:block/tomato_crop_trellised_top"
     }
   }
 }

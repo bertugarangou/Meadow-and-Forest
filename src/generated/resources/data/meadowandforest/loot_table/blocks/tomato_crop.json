@@ -2,10 +2,45 @@
   "type": "minecraft:block",
   "pools": [
     {
+      "conditions": [
+        {
+          "block": "meadowandforest:tomato_crop",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      ],
       "entries": [
         {
           "type": "minecraft:alternatives",
           "children": [
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "meadowandforest:tomato_crop",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "7"
+                  }
+                },
+                {
+                  "block": "meadowandforest:tomato_crop",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "trellised": "true"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "count": 2.0,
+                  "function": "minecraft:set_count"
+                }
+              ],
+              "name": "meadowandforest:vine_tomato"
+            },
             {
               "type": "minecraft:item",
               "conditions": [
@@ -24,40 +59,8 @@
                 }
               ],
               "name": "meadowandforest:tomato"
-            },
-            {
-              "type": "minecraft:item",
-              "name": "meadowandforest:tomato_seeds"
             }
           ]
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "conditions": [
-        {
-          "block": "meadowandforest:tomato_crop",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "7"
-          }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 0.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "meadowandforest:tomato_seeds"
         }
       ],
       "rolls": 1.0

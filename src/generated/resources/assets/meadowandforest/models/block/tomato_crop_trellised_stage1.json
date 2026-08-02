@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "meadowandforest:block/tomato_crop_trellised_stage1"
+  }
+}
