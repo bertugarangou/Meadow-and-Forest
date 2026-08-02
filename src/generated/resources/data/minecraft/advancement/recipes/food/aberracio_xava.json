@@ -17,11 +17,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_tomato": {
+    "has_tomato_soup": {
       "conditions": {
         "items": [
           {
-            "items": "meadowandforest:tomato"
+            "items": "meadowandforest:tomato_soup"
           }
         ]
       },
@@ -32,7 +32,7 @@
     [
       "has_the_recipe",
       "has_slice_of_bread",
-      "has_tomato"
+      "has_tomato_soup"
     ]
   ],
   "rewards": {

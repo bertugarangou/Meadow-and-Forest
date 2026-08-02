@@ -17,6 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,12 +32,12 @@ public class MAFRecipes extends RecipeProvider {
         }
 
         @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
+        protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registries, @NonNull RecipeOutput output) {
             return new MAFRecipes(registries, output);
         }
 
         @Override
-        public String getName() {
+        public @NonNull String getName() {
             return "Meadow and Forest Recipes";
         }
     }
@@ -122,7 +123,7 @@ public class MAFRecipes extends RecipeProvider {
                 .requires(MAFItems.SLICE_OF_BREAD.get())
                 .requires(MAFItems.TOMATO.get())
                 .unlockedBy(getHasName(MAFItems.SLICE_OF_BREAD.get()), has(MAFItems.SLICE_OF_BREAD.get()))
-                .unlockedBy(getHasName(MAFItems.TOMATO.get()), has(MAFItems.TOMATO.get()))
+                .unlockedBy(getHasName(MAFItems.TOMATO_SOUP.get()), has(MAFItems.TOMATO_SOUP.get()))
                 .group("aberracio_xava")
                 .save(output, "aberracio_xava");
 

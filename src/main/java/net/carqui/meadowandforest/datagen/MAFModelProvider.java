@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import org.jspecify.annotations.NonNull;
 
 public class MAFModelProvider extends ModelProvider {
     public MAFModelProvider(PackOutput output) {
@@ -29,7 +30,7 @@ public class MAFModelProvider extends ModelProvider {
     }
 
     @Override
-    protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
+    protected void registerModels(BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
 
         //items
         MAFItems.ITEMS.getEntries().forEach(item -> {
@@ -59,12 +60,12 @@ public class MAFModelProvider extends ModelProvider {
                             jarBlock,
                             "_firefly",
                             ModelTemplates.CUBE_ALL,
-                            block -> TextureMapping.cube(new Material(
+                            _ -> TextureMapping.cube(new Material(
                                     Identifier.fromNamespaceAndPath(MAF.MOD_ID, "block/" + variant.registryName() + "_firefly")))));
             blockModels.blockStateOutput.accept(
                     MultiVariantGenerator.dispatch(jarBlock).with(
                             PropertyDispatch.initial(CandleBlock.CANDLES, MAFGlassJarBlock.FIREFLY_INSIDE)
-                                    .generate((count, fireflyInside) -> fireflyInside ? fireflyVariant : normalVariant))
+                                    .generate((_, fireflyInside) -> fireflyInside ? fireflyVariant : normalVariant))
             );
         });
 

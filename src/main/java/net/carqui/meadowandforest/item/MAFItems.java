@@ -34,12 +34,12 @@ public class MAFItems {
     public static final DeferredItem<Item> TOMATO_SOUP = ITEMS.registerSimpleItem("tomato_soup",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(6)
-                    .saturationModifier(0.6f)
+                    .saturationModifier(0.7f)
                     .build()));
     public static final DeferredItem<Item> HALF_BREAD = ITEMS.registerSimpleItem("half_a_bread",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(3)
-                    .saturationModifier(0.5f)
+                    .saturationModifier(0.4f)
                     .build()));
     public static final DeferredItem<Item> WHOLE_BREAD = ITEMS.registerSimpleItem("whole_bread",
             props -> props.food(new FoodProperties.Builder()
@@ -54,18 +54,16 @@ public class MAFItems {
     public static final DeferredItem<Item> PA_AMB_TOMATA = ITEMS.registerSimpleItem("pa_amb_tomata",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(2)
-                    .saturationModifier(0.7f)
-                    .alwaysEdible()
+                    .saturationModifier(0.6f)
                     .build()));
     public static final DeferredItem<Item> XAVA_ABERRATION = ITEMS.registerSimpleItem("xava_aberration",
             props -> props.food(
                     new FoodProperties.Builder()
                             .nutrition(2)
-                            .saturationModifier(0.1f)
-                            .alwaysEdible()
+                            .saturationModifier(0.0f)
                             .build(),
                     Consumables.defaultFood()
-                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 160, 0), 0.6f))
+                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 0), 0.8f))
                             .build()));
     public static final DeferredItem<Item> BREADDOUGH = ITEMS.registerSimpleItem("breaddough");
     public static final DeferredItem<Item> SMALL_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("small_bread_breaddough");

@@ -21,6 +21,7 @@ import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
 
@@ -93,7 +94,7 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
 
 
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    protected @NonNull Iterable<Block> getKnownBlocks() {
         return (MAFBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator);
     }
 }
