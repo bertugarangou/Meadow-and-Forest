@@ -1,6 +1,7 @@
 package net.carqui.meadowandforest.datagen;
 
 import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.block.MAFGlassJarBlock;
 import net.carqui.meadowandforest.block.MAFTomatoCropBlock;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.minecraft.advancements.predicates.StatePropertiesPredicate;
@@ -9,12 +10,14 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyBlockState;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -29,6 +32,25 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         add(MAFBlocks.TOMATO_CROP.get(), createTomatoCropDrops());
+        MAFBlocks.GLASS_JARS.values().forEach(block -> add(block.get(), createGlassJarDrops(block.get())));
+    }
+
+    private LootTable.Builder createGlassJarDrops(Block jar) {
+        LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1));
+
+        for (int count = 1; count <= 4; count++) {
+            LootItemBlockStatePropertyCondition.Builder hasCount =
+                    LootItemBlockStatePropertyCondition.hasBlockStateProperties(jar)
+                            .setProperties(StatePropertiesPredicate.Builder.properties()
+                                    .hasProperty(CandleBlock.CANDLES, count));
+
+            pool.add(LootItem.lootTableItem(jar.asItem())
+                    .when(hasCount)
+                    .apply(CopyBlockState.copyState(jar).copy(MAFGlassJarBlock.FIREFLY_INSIDE))
+                    .apply(SetItemCountFunction.setCount(ConstantValue.exactly(count))));
+        }
+
+        return LootTable.lootTable().withPool(pool);
     }
 
     private LootTable.Builder createTomatoCropDrops() {
@@ -75,4 +97,3 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
         return (MAFBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator);
     }
 }
-

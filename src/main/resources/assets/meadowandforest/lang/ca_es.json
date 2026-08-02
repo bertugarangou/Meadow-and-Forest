@@ -13,5 +13,22 @@
   "item.meadowandforest.baguette_bread_breaddough": "Massa de barra de pa",
   "item.meadowandforest.big_bread_breaddough": "Massa de pa de quilo",
   "item.meadowandforest.breaddough": "Bola de massa",
-  "item.meadowandforest.small_bread_breaddough": "Massa de pa de mig"
+  "item.meadowandforest.small_bread_breaddough": "Massa de pa de mig",
+  "block.meadowandforest.black_glass_jar": "Pot de vidre negre",
+  "block.meadowandforest.blue_glass_jar": "Pot de vidre blau",
+  "block.meadowandforest.brown_glass_jar": "Pot de vidre marró",
+  "block.meadowandforest.cyan_glass_jar": "Pot de vidre cian",
+  "block.meadowandforest.glass_jar": "Pot de vidre",
+  "block.meadowandforest.gray_glass_jar": "Pot de vidre gris",
+  "block.meadowandforest.green_glass_jar": "Pot de vidre verd",
+  "block.meadowandforest.light_blue_glass_jar": "Pot de vidre blau clar",
+  "block.meadowandforest.light_gray_glass_jar": "Pot de vidre gris clar",
+  "block.meadowandforest.lime_glass_jar": "Pot de vidre lima",
+  "block.meadowandforest.magenta_glass_jar": "Pot de vidre magenta",
+  "block.meadowandforest.orange_glass_jar": "Pot de vidre taronja",
+  "block.meadowandforest.pink_glass_jar": "Pot de vidre rosa",
+  "block.meadowandforest.purple_glass_jar": "Pot de vidre lila",
+  "block.meadowandforest.red_glass_jar": "Pot de vidre vermell",
+  "block.meadowandforest.white_glass_jar": "Pot de vidre blanc",
+  "block.meadowandforest.yellow_glass_jar": "Pot de vidre groc"
 }

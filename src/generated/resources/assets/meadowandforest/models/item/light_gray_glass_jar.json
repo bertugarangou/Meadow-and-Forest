@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "meadowandforest:item/light_gray_glass_jar"
+  }
+}

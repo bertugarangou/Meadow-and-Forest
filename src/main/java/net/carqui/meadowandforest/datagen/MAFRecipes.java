@@ -1,6 +1,8 @@
 package net.carqui.meadowandforest.datagen;
 
 import net.carqui.meadowandforest.MAF;
+import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.block.MAFGlassJarVariants;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.HolderLookup;
@@ -13,6 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.NeoForgeConditions;
 
 import java.util.concurrent.CompletableFuture;
@@ -40,6 +43,7 @@ public class MAFRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes() {
+        glassJarRecipes();
 
         //tomato seeds from tomato
         shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SEEDS.get(), 3)
@@ -154,6 +158,19 @@ public class MAFRecipes extends RecipeProvider {
 
     }
 
+    private void glassJarRecipes() {
+        for (MAFGlassJarVariants.Variant variant : MAFGlassJarVariants.ALL) {
+            shaped(RecipeCategory.MISC, MAFBlocks.GLASS_JARS.get(variant.registryName()).get())
+                    .pattern("   ")
+                    .pattern("G G")
+                    .pattern("GGG")
+                    .define('G', variant.ingredient())
+                    .unlockedBy(getHasName(Blocks.GLASS), has(Blocks.GLASS))
+                    .group("glass_jar")
+                    .save(output);
+        }
+    }
+
     //cooking helper class and utils
     public enum CookingKind { FOOD, ORE, GENERIC }
 
@@ -196,9 +213,5 @@ public class MAFRecipes extends RecipeProvider {
         }
         //no case for GENERIC
     }
-
-
-
-
 
 }

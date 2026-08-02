@@ -1,10 +1,11 @@
 package net.carqui.meadowandforest.datagen;
 
 import net.carqui.meadowandforest.MAF;
-import net.carqui.meadowandforest.item.MAFItems;
 import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.item.MAFItems;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.BlockItem;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import java.util.Arrays;
@@ -20,7 +21,9 @@ public class MAFLanguageProvider extends LanguageProvider {
 
         // Automatically generate all items
         MAFItems.ITEMS.getEntries().forEach(item -> {
-            add(item.getId().toLanguageKey("item"), makeName(item.getId().getPath()));
+            if (!(item.get() instanceof BlockItem)) {
+                add(item.getId().toLanguageKey("item"), makeName(item.getId().getPath()));
+            }
         });
 
 

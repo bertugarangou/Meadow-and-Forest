@@ -12,12 +12,17 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 import static net.carqui.meadowandforest.item.MAFItems.ITEMS;
 
 public class MAFBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MAF.MOD_ID);
+    public static final Map<String, DeferredBlock<MAFGlassJarBlock>> GLASS_JARS = registerGlassJars();
+    public static final DeferredBlock<MAFGlassJarBlock> GLASS_JAR = GLASS_JARS.get("glass_jar");
 
     public static void Register(IEventBus eventBus){
         BLOCKS.register(eventBus);
@@ -30,6 +35,23 @@ public class MAFBlocks {
         DeferredBlock<T> toReturn = BLOCKS.registerBlock(name, function);
         registerBlockItem(name, toReturn);
         return (toReturn);
+    }
+
+    private static Map<String, DeferredBlock<MAFGlassJarBlock>> registerGlassJars() {
+        LinkedHashMap<String, DeferredBlock<MAFGlassJarBlock>> glassJars = new LinkedHashMap<>();
+        for (MAFGlassJarVariants.Variant variant : MAFGlassJarVariants.ALL) {
+            glassJars.put(variant.registryName(), registerGlassJar(variant.registryName()));
+        }
+        return Collections.unmodifiableMap(glassJars);
+    }
+
+    private static DeferredBlock<MAFGlassJarBlock> registerGlassJar(String name) {
+        return registerBlock(name, properties -> new MAFGlassJarBlock(properties
+                .mapColor(MapColor.NONE)
+                .noOcclusion()
+                .strength(0.2F)
+                .sound(SoundType.GLASS)
+                .pushReaction(PushReaction.DESTROY)));
     }
 
     public static final DeferredBlock<MAFTomatoCropBlock> TOMATO_CROP = BLOCKS.registerBlock("tomato_crop",

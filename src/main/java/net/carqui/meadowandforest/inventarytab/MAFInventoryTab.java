@@ -1,6 +1,8 @@
 package net.carqui.meadowandforest.inventarytab;
 
 import net.carqui.meadowandforest.MAF;
+import net.carqui.meadowandforest.block.MAFBlocks;
+import net.carqui.meadowandforest.block.MAFGlassJarVariants;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -38,6 +40,7 @@ public class MAFInventoryTab {
                         output.accept(MAFItems.BIG_BREAD_BREADDOUGH);
                         output.accept(MAFItems.SMALL_BREAD_BREADDOUGH);
                         output.accept(MAFItems.BREADDOUGH);
+                        MAFGlassJarVariants.ALL.forEach(variant -> output.accept(MAFBlocks.GLASS_JARS.get(variant.registryName())));
 
                     }).build());
 }

@@ -13,5 +13,23 @@
   "item.meadowandforest.baguette_bread_breaddough": "Masa de barra de pan",
   "item.meadowandforest.big_bread_breaddough": "Masa de pan de kilo",
   "item.meadowandforest.breaddough": "Bola de masa",
-  "item.meadowandforest.small_bread_breaddough": "Masa de pan de medio"
+  "item.meadowandforest.small_bread_breaddough": "Masa de pan de medio",
+  "block.meadowandforest.black_glass_jar": "Frasco de vídrio negro",
+  "block.meadowandforest.blue_glass_jar": "Frasco de vídrio azúl",
+  "block.meadowandforest.brown_glass_jar": "Frasco de vídrio marrón",
+  "block.meadowandforest.cyan_glass_jar": "Frasco de vídrio cian",
+  "block.meadowandforest.glass_jar": "Frasco de vídrio",
+  "block.meadowandforest.gray_glass_jar": "Frasco de vídrio gris",
+  "block.meadowandforest.green_glass_jar": "Frasco de vídrio verde",
+  "block.meadowandforest.light_blue_glass_jar": "Frasco de vídrio azúl claro",
+  "block.meadowandforest.light_gray_glass_jar": "Frasco de vídrio gris claro",
+  "block.meadowandforest.lime_glass_jar": "Frasco de vídrio lima",
+  "block.meadowandforest.magenta_glass_jar": "Frasco de vídrio magenta",
+  "block.meadowandforest.orange_glass_jar": "Frasco de vídrio naranja",
+  "block.meadowandforest.pink_glass_jar": "Frasco de vídrio rosa",
+  "block.meadowandforest.purple_glass_jar": "Frasco de vídrio morado",
+  "block.meadowandforest.red_glass_jar": "Frasco de vídrio rojo",
+  "block.meadowandforest.white_glass_jar": "Frasco de vídrio blanco",
+  "block.meadowandforest.yellow_glass_jar": "Frasco de vídrio amarillo"
+
 }

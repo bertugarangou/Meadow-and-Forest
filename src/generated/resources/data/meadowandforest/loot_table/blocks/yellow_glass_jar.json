@@ -1,0 +1,115 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "candles": "1"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "firefly_inside"
+              ]
+            },
+            {
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "meadowandforest:yellow_glass_jar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "candles": "2"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "firefly_inside"
+              ]
+            },
+            {
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "meadowandforest:yellow_glass_jar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "candles": "3"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "firefly_inside"
+              ]
+            },
+            {
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "meadowandforest:yellow_glass_jar"
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "candles": "4"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "block": "meadowandforest:yellow_glass_jar",
+              "function": "minecraft:copy_state",
+              "properties": [
+                "firefly_inside"
+              ]
+            },
+            {
+              "count": 4.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "meadowandforest:yellow_glass_jar"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "meadowandforest:blocks/yellow_glass_jar"
+}
