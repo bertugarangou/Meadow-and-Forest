@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_slice_of_bread": {
+      "conditions": {
+        "items": [
+          {
+            "items": "meadowandforest:slice_of_bread"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:pa_amb_tomata"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vine_tomato": {
+      "conditions": {
+        "items": [
+          {
+            "items": "meadowandforest:vine_tomato"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_slice_of_bread",
+      "has_vine_tomato"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:pa_amb_tomata"
+    ]
+  }
+}

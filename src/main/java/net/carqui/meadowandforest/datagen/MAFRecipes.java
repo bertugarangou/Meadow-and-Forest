@@ -106,6 +106,22 @@ public class MAFRecipes extends RecipeProvider {
                 .group("slice_of_bread")
                 .save(output, "slice_of_bread_from_minecraftbread");
 
+        shapeless(RecipeCategory.FOOD, MAFItems.PA_AMB_TOMATA.get(), 1)
+                .requires(MAFItems.SLICE_OF_BREAD.get())
+                .requires(MAFItems.VINE_TOMATO.get())
+                .unlockedBy(getHasName(MAFItems.SLICE_OF_BREAD.get()), has(MAFItems.SLICE_OF_BREAD.get()))
+                .unlockedBy(getHasName(MAFItems.VINE_TOMATO.get()), has(MAFItems.VINE_TOMATO.get()))
+                .group("pa_amb_tomata")
+                .save(output, "pa_amb_tomata");
+
+        shapeless(RecipeCategory.FOOD, MAFItems.XAVA_ABERRATION.get(), 1)
+                .requires(MAFItems.SLICE_OF_BREAD.get())
+                .requires(MAFItems.TOMATO.get())
+                .unlockedBy(getHasName(MAFItems.SLICE_OF_BREAD.get()), has(MAFItems.SLICE_OF_BREAD.get()))
+                .unlockedBy(getHasName(MAFItems.TOMATO.get()), has(MAFItems.TOMATO.get()))
+                .group("aberracio_xava")
+                .save(output, "aberracio_xava");
+
         //breaddough cooking
         cookingRecipes(output, CookingKind.FOOD, "small_bread_breaddough", MAFItems.SMALL_BREAD_BREADDOUGH.get(), MAFItems.HALF_BREAD, 0.1f, 160, "small_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
         cookingRecipes(output, CookingKind.FOOD, "big_bread_breaddough", MAFItems.BIG_BREAD_BREADDOUGH.get(), MAFItems.WHOLE_BREAD, 0.2f, 160, "big_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
@@ -125,6 +141,7 @@ public class MAFRecipes extends RecipeProvider {
 
     //cooking helper class and utils
     public enum CookingKind { FOOD, ORE, GENERIC }
+
 
     protected void cookingRecipes(RecipeOutput output,
                                   CookingKind category,

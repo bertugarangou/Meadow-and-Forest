@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "pa_amb_tomata",
+  "ingredients": [
+    "meadowandforest:slice_of_bread",
+    "meadowandforest:vine_tomato"
+  ],
+  "result": {
+    "id": "meadowandforest:pa_amb_tomata"
+  }
+}

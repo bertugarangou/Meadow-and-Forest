@@ -55,15 +55,17 @@ public class MAFItems {
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(7)
                     .saturationModifier(0.7f)
+                    .alwaysEdible()
                     .build()));
     public static final DeferredItem<Item> XAVA_ABERRATION = ITEMS.registerSimpleItem("xava_aberration",
             props -> props.food(
                     new FoodProperties.Builder()
                             .nutrition(4)
                             .saturationModifier(0.1f)
+                            .alwaysEdible()
                             .build(),
                     Consumables.defaultFood()
-                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 200, 0), 0.8f))
+                            .onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.NAUSEA, 160, 0), 0.8f))
                             .build()));
     public static final DeferredItem<Item> BREADDOUGH = ITEMS.registerSimpleItem("breaddough");
     public static final DeferredItem<Item> SMALL_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("small_bread_breaddough");

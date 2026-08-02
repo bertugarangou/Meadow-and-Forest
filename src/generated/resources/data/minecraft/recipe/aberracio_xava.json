@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "aberracio_xava",
+  "ingredients": [
+    "meadowandforest:slice_of_bread",
+    "meadowandforest:tomato"
+  ],
+  "result": {
+    "id": "meadowandforest:xava_aberration"
+  }
+}
