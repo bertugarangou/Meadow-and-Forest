@@ -1,3 +1,24 @@
+# Custom license
+
+This project has different subfolders and folders with different licenses:  
+
+Art, media content and any file under the following directories and subdirectories recursivelly and not owned by "Mojang AB. TM Microsoft Corporation":
+
+/src/main/resources/  
+/src/main/resources/assets  
+/src/main/resources/data  
+/src/generated/  
+
+Are subject to the following license:
+
+*Copyright (c) 2026 Carqui (Albert Garangou) All Rights Reserved.*
+
+Any other file or content on the project is under GNU GPL v3:
+```
+You are free to use, modify, and redistribute it, provided that any distributed modifications are also licensed under GPL v3 and the corresponding source code is made available.
+This software is provided "AS IS", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. Use this software at your own risk.
+Check full license at https://www.gnu.org/licenses/gpl-3.0.html
+
 GNU GENERAL PUBLIC LICENSE
 Version 3, 29 June 2007
 
@@ -36,3 +57,4 @@ gratis or for a fee, you must pass on to the recipients the same
 freedoms that you received. You must make sure that they, too, receive
 or can get the source code. And you must show them these terms so they
 know their rights.
+```
