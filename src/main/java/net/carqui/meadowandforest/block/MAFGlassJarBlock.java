@@ -70,9 +70,14 @@ public class MAFGlassJarBlock extends CandleBlock {
 
             if (targetState.is(net.minecraft.world.level.block.Blocks.FIREFLY_BUSH)) {
                 if (fireflyInside) {
+                    event.setCancellationResult(InteractionResult.FAIL);
+                    event.setCanceled(true);
                     return;
                 }
 
+                if (!clientSide) {
+                    event.getLevel().setBlockAndUpdate(event.getPos(), net.minecraft.world.level.block.Blocks.SHORT_GRASS.defaultBlockState());
+                }
                 stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, true));
                 event.setCancellationResult(InteractionResult.SUCCESS);
                 event.setCanceled(true);
