@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "meadowandforest:block/purple_glass_jar_firefly"
-  }
-}

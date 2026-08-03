@@ -14,12 +14,9 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import org.jspecify.annotations.NonNull;
@@ -48,25 +45,8 @@ public class MAFModelProvider extends ModelProvider {
 
         MAFGlassJarVariants.ALL.forEach(variant -> {
             Block jarBlock = MAFBlocks.GLASS_JARS.get(variant.registryName()).get();
-            blockModels.registerSimpleFlatItemModel(jarBlock.asItem());
-            MultiVariant normalVariant = BlockModelGenerators.plainVariant(
-                    blockModels.createSuffixedVariant(
-                            jarBlock,
-                            "",
-                            ModelTemplates.CUBE_ALL,
-                            TextureMapping::cube));
-            MultiVariant fireflyVariant = BlockModelGenerators.plainVariant(
-                    blockModels.createSuffixedVariant(
-                            jarBlock,
-                            "_firefly",
-                            ModelTemplates.CUBE_ALL,
-                            _ -> TextureMapping.cube(new Material(
-                                    Identifier.fromNamespaceAndPath(MAF.MOD_ID, "block/" + variant.registryName() + "_firefly")))));
-            blockModels.blockStateOutput.accept(
-                    MultiVariantGenerator.dispatch(jarBlock).with(
-                            PropertyDispatch.initial(CandleBlock.CANDLES, MAFGlassJarBlock.FIREFLY_INSIDE)
-                                    .generate((_, fireflyInside) -> fireflyInside ? fireflyVariant : normalVariant))
-            );
+            blockModels.registerSimpleFlatItemModel(jarBlock.asItem()); //item on inventary and hand
+            blockModels.createNonTemplateModelBlock(jarBlock); //block in world
         });
 
         Block tomatoCrop = MAFBlocks.TOMATO_CROP.get();
