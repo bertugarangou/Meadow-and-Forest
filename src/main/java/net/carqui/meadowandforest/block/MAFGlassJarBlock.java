@@ -23,12 +23,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class MAFGlassJarBlock extends CandleBlock {
     public static final BooleanProperty FIREFLY_INSIDE = BooleanProperty.create("firefly_inside");
 
-    private static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 5.0D, 12.0D);
+    private static final VoxelShape SHAPE_1 = Block.box(5.0D, 0.0D, 4.5D, 11.0D, 10.5D, 11.0D);
+    private static final VoxelShape SHAPE_2 = Block.box(1.75D, 0.0D, 1.75D, 15.0D, 11.0D, 15.0D);
+    private static final VoxelShape SHAPE_3 = Block.box(2.0D, 0.0D, 1.75D, 15.0D, 11.0D, 15.0D);
+    private static final VoxelShape SHAPE_4 = Block.box(1.75D, 0.0D, 1.75D, 15.25D, 11.0D, 15.0D);
 
     public MAFGlassJarBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -46,8 +50,13 @@ public class MAFGlassJarBlock extends CandleBlock {
     }
 
     @Override
-    public @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
-        return SHAPE;
+    public @NotNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+        return switch (state.getValue(CANDLES)) {
+            case 1 -> SHAPE_1;
+            case 2 -> SHAPE_2;
+            case 3 -> SHAPE_3;
+            default -> SHAPE_4;
+        };
     }
 
     @Override
