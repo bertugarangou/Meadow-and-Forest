@@ -33,8 +33,6 @@ public class MAFModelProvider extends ModelProvider {
         super(output, MAF.MOD_ID);
     }
 
-    // CandleBlock.CANDLES value -> word-based suffix used by the hand-authored
-    // Blockbench models (glass_jar_one_jar.json, glass_jar_two_jars.json, ...)
     private static final Map<Integer, String> JAR_COUNT_SUFFIX = Map.of(
             1, "_one_jar",
             2, "_two_jars",
@@ -54,24 +52,25 @@ public class MAFModelProvider extends ModelProvider {
 
         //blocks
         MAFBlocks.BLOCKS.getEntries().forEach(block -> {
+            //exceptions manually handled below
             if (block.get() != MAFBlocks.TOMATO_CROP.get() && !(block.get() instanceof MAFGlassJarBlock)) {
                 blockModels.createTrivialCube(block.get());
             }
         });
 
+        //glass jars
         MAFGlassJarVariants.ALL.forEach(variant -> {
             Block jarBlock = MAFBlocks.GLASS_JARS.get(variant.registryName()).get();
 
-            // Item icon (every color): switch between the plain texture and
-            // the "_firefly" texture based on FIREFLY_INSIDE_MARKER, which the
-            // interaction handler sets/removes in lockstep with the real
-            // FIREFLY_INSIDE block-state value stored on the stack. Every
-            // color already has both a "<name>.png" and "<name>_firefly.png"
-            // item texture on disk.
+            //item on inventory format:
+            //<color>_glass_jar_one_jar.json
+            //<color>_glass_jar_two_jars.json
+            //glass_jar_..._jars.json
             ItemModel.Unbaked normalIcon = ItemModelUtils.plainModel(
-                    itemModels.createFlatItemModel(jarBlock.asItem(), ModelTemplates.FLAT_ITEM));
+                    itemModels.createFlatItemModel(jarBlock.asItem(), ModelTemplates.FLAT_ITEM)); //no firefly
             ItemModel.Unbaked fireflyIcon = ItemModelUtils.plainModel(
-                    itemModels.createFlatItemModel(jarBlock.asItem(), "_firefly", ModelTemplates.FLAT_ITEM));
+                    itemModels.createFlatItemModel(jarBlock.asItem(), "_firefly", ModelTemplates.FLAT_ITEM)); //with firefly
+
 
             itemModels.generateBooleanDispatch(
                     jarBlock.asItem(),
@@ -80,26 +79,25 @@ public class MAFModelProvider extends ModelProvider {
                     normalIcon
             );
 
-            if ("glass_jar".equals(variant.registryName())) {
-                // Only the default glass variant has per-jar-count / firefly
-                // block models authored right now (glass_jar_one_jar.json,
-                // glass_jar_two_jars.json, ..., and the _firefly counterparts).
-                blockModels.blockStateOutput.accept(
-                        MultiVariantGenerator.dispatch(jarBlock).with(
-                                PropertyDispatch.initial(CandleBlock.CANDLES, MAFGlassJarBlock.FIREFLY_INSIDE)
-                                        .generate((count, firefly) -> BlockModelGenerators.plainVariant(
-                                                Identifier.fromNamespaceAndPath(MAF.MOD_ID,
-                                                        "block/glass_jar" + JAR_COUNT_SUFFIX.get(count) + (firefly ? "_firefly" : ""))
-                                        ))
-                        )
-                );
-            } else {
-                // No per-count/firefly block models yet for the other 16
-                // colors - keep the old single-model fallback so they don't break.
-                blockModels.createNonTemplateModelBlock(jarBlock);
-            }
+            final String baseName = variant.registryName();
+
+            blockModels.blockStateOutput.accept(
+                    MultiVariantGenerator.dispatch(jarBlock).with(
+                            PropertyDispatch.initial(CandleBlock.CANDLES, MAFGlassJarBlock.FIREFLY_INSIDE)
+                                    .generate((count, firefly) -> BlockModelGenerators.plainVariant(
+                                            Identifier.fromNamespaceAndPath(
+                                                    MAF.MOD_ID,
+                                                    "block/"
+                                                            + baseName
+                                                            + JAR_COUNT_SUFFIX.get(count)
+                                                            + (firefly ? "_firefly" : "")
+                                            )
+                                    ))
+                    )
+            );
         });
 
+        //tomato crop
         Block tomatoCrop = MAFBlocks.TOMATO_CROP.get();
         blockModels.registerSimpleFlatItemModel(tomatoCrop.asItem());
         MultiVariant trellisTopVariant = BlockModelGenerators.plainVariant(
