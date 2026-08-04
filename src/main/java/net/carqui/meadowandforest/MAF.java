@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
 import net.carqui.meadowandforest.block.MAFBlocks;
 import net.carqui.meadowandforest.inventarytab.MAFInventoryTab;
+import net.carqui.meadowandforest.item.MAFDataComponents;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.carqui.meadowandforest.loot.SeedSwapLootModifier;
 import net.neoforged.bus.api.IEventBus;
@@ -44,6 +45,7 @@ public class MAF {
         MAFInventoryTab.register(modEventBus);
         MAFItems.register(modEventBus);
         MAFBlocks.Register(modEventBus);
+        MAFDataComponents.register(modEventBus);
         LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);

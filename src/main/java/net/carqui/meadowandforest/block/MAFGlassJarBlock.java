@@ -1,6 +1,7 @@
 package net.carqui.meadowandforest.block;
 
 import net.carqui.meadowandforest.MAF;
+import net.carqui.meadowandforest.item.MAFDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
@@ -79,6 +80,7 @@ public class MAFGlassJarBlock extends CandleBlock {
                     event.getLevel().setBlockAndUpdate(event.getPos(), net.minecraft.world.level.block.Blocks.SHORT_GRASS.defaultBlockState());
                 }
                 stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, true));
+                stack.set(MAFDataComponents.FIREFLY_INSIDE_MARKER.get(), true);
                 event.setCancellationResult(InteractionResult.SUCCESS);
                 event.setCanceled(true);
                 return;
@@ -104,6 +106,7 @@ public class MAFGlassJarBlock extends CandleBlock {
                 event.getLevel().setBlockAndUpdate(event.getPos(), net.minecraft.world.level.block.Blocks.FIREFLY_BUSH.defaultBlockState());
             }
             stack.set(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(FIREFLY_INSIDE, false));
+            stack.remove(MAFDataComponents.FIREFLY_INSIDE_MARKER.get());
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
         }
