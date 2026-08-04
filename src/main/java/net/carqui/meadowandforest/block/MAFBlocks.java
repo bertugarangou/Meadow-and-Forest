@@ -48,6 +48,7 @@ public class MAFBlocks {
     private static DeferredBlock<MAFGlassJarBlock> registerGlassJar(String name) {
         return registerBlock(name, properties -> new MAFGlassJarBlock(properties
                 .mapColor(MapColor.NONE)
+                .lightLevel(MAFGlassJarBlock.LIGHT_EMISSION)
                 .noOcclusion()
                 .strength(0.2F)
                 .sound(SoundType.GLASS)

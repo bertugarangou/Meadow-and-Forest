@@ -26,6 +26,8 @@ import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
+import java.util.function.ToIntFunction;
+
 public class MAFGlassJarBlock extends CandleBlock {
     public static final BooleanProperty FIREFLY_INSIDE = BooleanProperty.create("firefly_inside");
 
@@ -33,6 +35,13 @@ public class MAFGlassJarBlock extends CandleBlock {
     private static final VoxelShape SHAPE_2 = Block.box(1.75D, 0.0D, 1.75D, 15.0D, 11.0D, 15.0D);
     private static final VoxelShape SHAPE_3 = Block.box(2.0D, 0.0D, 1.75D, 15.0D, 11.0D, 15.0D);
     private static final VoxelShape SHAPE_4 = Block.box(1.75D, 0.0D, 1.75D, 15.25D, 11.0D, 15.0D);
+
+    private static final int[] LIGHT_LEVELS = new int[]{3, 6, 9, 12};
+
+    public static final ToIntFunction<BlockState> LIGHT_EMISSION = state -> {
+        if (!state.getValue(FIREFLY_INSIDE)) return 0;
+        return LIGHT_LEVELS[state.getValue(CANDLES) - 1];
+    };
 
     public MAFGlassJarBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -47,6 +56,11 @@ public class MAFGlassJarBlock extends CandleBlock {
     protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FIREFLY_INSIDE);
+    }
+
+    @Override
+    protected boolean canBeLit(@NonNull BlockState state) {
+        return false;
     }
 
     @Override

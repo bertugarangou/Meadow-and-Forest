@@ -24,7 +24,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
-
+//TODO: wheat seeds stopped generating, it's a 100% tomato.
 public class MAFBlockLootTableProvider extends BlockLootSubProvider {
     public MAFBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
