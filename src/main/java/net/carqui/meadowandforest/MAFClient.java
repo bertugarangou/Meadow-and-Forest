@@ -1,6 +1,5 @@
 package net.carqui.meadowandforest;
 
-import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -22,7 +21,6 @@ public class MAFClient {
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
-        MAF.LOGGER.info("HELLO FROM CLIENT SETUP");
-        MAF.LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+        MAF.LOGGER.info("Beginning of client setup for Meadow and Forest");
     }
 }

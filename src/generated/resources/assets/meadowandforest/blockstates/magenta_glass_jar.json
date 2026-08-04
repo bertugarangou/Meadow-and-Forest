@@ -1,7 +1,28 @@
 {
   "variants": {
-    "": {
-      "model": "meadowandforest:block/magenta_glass_jar"
+    "candles=1,firefly_inside=false": {
+      "model": "meadowandforest:block/magenta_glass_jar_one_jar"
+    },
+    "candles=1,firefly_inside=true": {
+      "model": "meadowandforest:block/magenta_glass_jar_one_jar_firefly"
+    },
+    "candles=2,firefly_inside=false": {
+      "model": "meadowandforest:block/magenta_glass_jar_two_jars"
+    },
+    "candles=2,firefly_inside=true": {
+      "model": "meadowandforest:block/magenta_glass_jar_two_jars_firefly"
+    },
+    "candles=3,firefly_inside=false": {
+      "model": "meadowandforest:block/magenta_glass_jar_three_jars"
+    },
+    "candles=3,firefly_inside=true": {
+      "model": "meadowandforest:block/magenta_glass_jar_three_jars_firefly"
+    },
+    "candles=4,firefly_inside=false": {
+      "model": "meadowandforest:block/magenta_glass_jar_four_jars"
+    },
+    "candles=4,firefly_inside=true": {
+      "model": "meadowandforest:block/magenta_glass_jar_four_jars_firefly"
     }
   }
 }

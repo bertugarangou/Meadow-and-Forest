@@ -1,6 +1,6 @@
 {
 	"format_version": "1.21.11",
-	"credit": "Made with Blockbench",
+
 	"textures": {
 		"0": "minecraft:block/beehive_end",
 		"1": "minecraft:block/glass",
