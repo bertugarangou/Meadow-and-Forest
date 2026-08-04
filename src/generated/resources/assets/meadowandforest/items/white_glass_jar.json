@@ -1,6 +1,15 @@
 {
   "model": {
-    "type": "minecraft:model",
-    "model": "meadowandforest:item/white_glass_jar"
+    "type": "minecraft:condition",
+    "component": "meadowandforest:firefly_inside_marker",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "meadowandforest:item/white_glass_jar"
+    },
+    "on_true": {
+      "type": "minecraft:model",
+      "model": "meadowandforest:item/white_glass_jar_firefly"
+    },
+    "property": "minecraft:has_component"
   }
 }

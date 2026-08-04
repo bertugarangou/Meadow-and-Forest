@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "meadowandforest:item/pink_glass_jar_firefly"
+  }
+}

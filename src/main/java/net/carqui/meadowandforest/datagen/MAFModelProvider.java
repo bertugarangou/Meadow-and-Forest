@@ -62,6 +62,24 @@ public class MAFModelProvider extends ModelProvider {
         MAFGlassJarVariants.ALL.forEach(variant -> {
             Block jarBlock = MAFBlocks.GLASS_JARS.get(variant.registryName()).get();
 
+            // Item icon (every color): switch between the plain texture and
+            // the "_firefly" texture based on FIREFLY_INSIDE_MARKER, which the
+            // interaction handler sets/removes in lockstep with the real
+            // FIREFLY_INSIDE block-state value stored on the stack. Every
+            // color already has both a "<name>.png" and "<name>_firefly.png"
+            // item texture on disk.
+            ItemModel.Unbaked normalIcon = ItemModelUtils.plainModel(
+                    itemModels.createFlatItemModel(jarBlock.asItem(), ModelTemplates.FLAT_ITEM));
+            ItemModel.Unbaked fireflyIcon = ItemModelUtils.plainModel(
+                    itemModels.createFlatItemModel(jarBlock.asItem(), "_firefly", ModelTemplates.FLAT_ITEM));
+
+            itemModels.generateBooleanDispatch(
+                    jarBlock.asItem(),
+                    ItemModelUtils.hasComponent(MAFDataComponents.FIREFLY_INSIDE_MARKER.get()),
+                    fireflyIcon,
+                    normalIcon
+            );
+
             if ("glass_jar".equals(variant.registryName())) {
                 // Only the default glass variant has per-jar-count / firefly
                 // block models authored right now (glass_jar_one_jar.json,
@@ -75,26 +93,9 @@ public class MAFModelProvider extends ModelProvider {
                                         ))
                         )
                 );
-
-                // Item icon: switch between the plain texture and the
-                // "_firefly" texture based on FIREFLY_INSIDE_MARKER, which the
-                // interaction handler sets/removes in lockstep with the real
-                // FIREFLY_INSIDE block-state value stored on the stack.
-                ItemModel.Unbaked normalIcon = ItemModelUtils.plainModel(
-                        itemModels.createFlatItemModel(jarBlock.asItem(), ModelTemplates.FLAT_ITEM));
-                ItemModel.Unbaked fireflyIcon = ItemModelUtils.plainModel(
-                        itemModels.createFlatItemModel(jarBlock.asItem(), "_firefly", ModelTemplates.FLAT_ITEM));
-
-                itemModels.generateBooleanDispatch(
-                        jarBlock.asItem(),
-                        ItemModelUtils.hasComponent(MAFDataComponents.FIREFLY_INSIDE_MARKER.get()),
-                        fireflyIcon,
-                        normalIcon
-                );
             } else {
-                // No per-count/firefly models yet for the other 16 colors -
-                // keep the old single-model fallback so they don't break.
-                blockModels.registerSimpleFlatItemModel(jarBlock.asItem());
+                // No per-count/firefly block models yet for the other 16
+                // colors - keep the old single-model fallback so they don't break.
                 blockModels.createNonTemplateModelBlock(jarBlock);
             }
         });
