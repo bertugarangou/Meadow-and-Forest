@@ -46,7 +46,7 @@ public class MAFDataGen {
 
         generator.addProvider(true, new MAFRecipes.Runner(packOutput, lookupProvider));
 
-        // Grass sometimes drops tomato seeds instead of wheat seeds (1/4 of the time it would drop seeds at all).
+        // When grass drops wheat seeds, 12% of the time swap it for a tomato seed instead (88% wheat / 12% tomato).
         generator.addProvider(true, new GlobalLootModifierProvider(packOutput, lookupProvider, MAF.MOD_ID) {
             @Override
             protected void start() {
@@ -55,7 +55,7 @@ public class MAFDataGen {
                         new SeedSwapLootModifier(
                                 new LootItemCondition[] {
                                         LootTableIdCondition.builder(SHORT_GRASS_LOOT_TABLE.identifier()).build(),
-                                        LootItemRandomChanceCondition.randomChance(015F).build()
+                                        LootItemRandomChanceCondition.randomChance(0.12F).build()
                                 },
                                 1000,
                                 Items.WHEAT_SEEDS,

@@ -10,7 +10,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-//TODO: wheat seeds stopped generating, it's a 100% tomato.
+
 public class SeedSwapLootModifier extends LootModifier {
     public static final MapCodec<SeedSwapLootModifier> CODEC = RecordCodecBuilder.mapCodec(inst ->
             codecStart(inst).and(inst.group(
