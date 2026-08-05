@@ -1,11 +1,14 @@
 package net.carqui.meadowandforest;
 
+import net.carqui.meadowandforest.block.MAFBlockEntities;
+import net.carqui.meadowandforest.block.MAFDryingTrayRenderer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
@@ -32,5 +35,13 @@ public class MAFClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code
         MAF.LOGGER.info("Beginning of client setup for Meadow and Forest");
+    }
+
+    /**
+     * Registers the Drying Tray's block entity renderer.
+     */
+    @SubscribeEvent
+    static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(MAFBlockEntities.DRYING_TRAY.get(), MAFDryingTrayRenderer::new);
     }
 }

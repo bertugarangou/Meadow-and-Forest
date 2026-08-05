@@ -95,4 +95,12 @@ public class MAFBlocks {
                     .instabreak()
                     .sound(SoundType.GRASS)
                     .pushReaction(PushReaction.DESTROY)));
+
+    // Drying Tray - dries fruits/veggies/herbs/mushrooms/meat over time via right-click interaction.
+    public static final DeferredBlock<MAFDryingTrayBlock> DRYING_TRAY = registerBlock("drying_tray",
+            properties -> new MAFDryingTrayBlock(properties
+                    .mapColor(MapColor.WOOD)
+                    .strength(2.0F)
+                    .sound(SoundType.WOOD)
+                    .noOcclusion()));
 }

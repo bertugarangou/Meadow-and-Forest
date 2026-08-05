@@ -4,13 +4,18 @@ import net.carqui.meadowandforest.MAF;
 import net.carqui.meadowandforest.block.MAFBlocks;
 import net.carqui.meadowandforest.block.MAFGlassJarVariants;
 import net.carqui.meadowandforest.item.MAFItems;
+import net.carqui.meadowandforest.recipe.DryingRecipe;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -184,6 +189,25 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(output);
 
+        dryingRecipes();
+    }
+
+    /**
+     * Registers every Drying Tray recipe. Duration is fixed globally (see
+     * MAFDryingTrayBlockEntity#DRYING_TIME_TICKS), so only ingredient -> result
+     * needs to be specified here. Add new fruits/veggies/herbs/mushrooms/meat
+     * by adding another call below - no code changes needed beyond this.
+     */
+    private void dryingRecipes() {
+        dryingRecipe(MAFItems.BASIL_LEAVES.get(), MAFItems.BASIL_LEAVES_DRIED.get(), "basil_leaves_drying");
+    }
+
+    private void dryingRecipe(ItemLike ingredient, ItemLike result, String name) {
+        output.accept(
+                ResourceKey.create(Registries.RECIPE, Identifier.fromNamespaceAndPath(MAF.MOD_ID, name)),
+                new DryingRecipe(Ingredient.of(ingredient), new ItemStackTemplate(result.asItem())),
+                null
+        );
     }
 
     /**

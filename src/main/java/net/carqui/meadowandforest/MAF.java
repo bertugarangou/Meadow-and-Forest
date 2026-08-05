@@ -2,11 +2,13 @@ package net.carqui.meadowandforest;
 
 import com.mojang.logging.LogUtils;
 import com.mojang.serialization.MapCodec;
+import net.carqui.meadowandforest.block.MAFBlockEntities;
 import net.carqui.meadowandforest.block.MAFBlocks;
 import net.carqui.meadowandforest.inventarytab.MAFInventoryTab;
 import net.carqui.meadowandforest.item.MAFDataComponents;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.carqui.meadowandforest.loot.SeedSwapLootModifier;
+import net.carqui.meadowandforest.recipe.DryingRecipe;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -53,7 +55,9 @@ public class MAF {
         MAFInventoryTab.register(modEventBus);
         MAFItems.register(modEventBus);
         MAFBlocks.Register(modEventBus);
+        MAFBlockEntities.register(modEventBus);
         MAFDataComponents.register(modEventBus);
+        DryingRecipe.register(modEventBus);
         LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);

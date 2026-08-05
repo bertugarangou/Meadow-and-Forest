@@ -50,6 +50,7 @@ public class MAFInventoryTab {
                         MAFGlassJarVariants.ALL.forEach(variant -> output.accept(MAFBlocks.GLASS_JARS.get(variant.registryName())));
                         output.accept(MAFItems.BASIL_LEAVES);
                         output.accept(MAFItems.BASIL_LEAVES_DRIED);
+                        output.accept(MAFBlocks.DRYING_TRAY);
 
 
                     }).build());

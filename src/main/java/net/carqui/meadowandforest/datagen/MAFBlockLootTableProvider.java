@@ -45,6 +45,8 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
         MAFBlocks.GLASS_JARS.values().forEach(block -> add(block.get(), createGlassJarDrops(block.get())));
         // Basil always drops itself (its own BlockItem) regardless of age, like a flower.
         dropSelf(MAFBlocks.BASIL_PLANT.get());
+        // Drying Tray drops itself; any items currently drying inside are lost on break.
+        dropSelf(MAFBlocks.DRYING_TRAY.get());
     }
 
     /**
