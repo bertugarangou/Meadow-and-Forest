@@ -24,7 +24,6 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
-//TODO: wheat seeds stopped generating, it's a 100% tomato.
 public class MAFBlockLootTableProvider extends BlockLootSubProvider {
     public MAFBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
@@ -34,6 +33,8 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         add(MAFBlocks.TOMATO_CROP.get(), createTomatoCropDrops());
         MAFBlocks.GLASS_JARS.values().forEach(block -> add(block.get(), createGlassJarDrops(block.get())));
+        // Basil always drops itself (its own BlockItem) regardless of age, like a flower.
+        dropSelf(MAFBlocks.BASIL_PLANT.get());
     }
 
     private LootTable.Builder createGlassJarDrops(Block jar) {

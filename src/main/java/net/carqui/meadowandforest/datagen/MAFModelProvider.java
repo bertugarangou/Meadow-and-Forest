@@ -53,7 +53,9 @@ public class MAFModelProvider extends ModelProvider {
         //blocks
         MAFBlocks.BLOCKS.getEntries().forEach(block -> {
             //exceptions manually handled below
-            if (block.get() != MAFBlocks.TOMATO_CROP.get() && !(block.get() instanceof MAFGlassJarBlock)) {
+            if (block.get() != MAFBlocks.TOMATO_CROP.get()
+                    && block.get() != MAFBlocks.BASIL_PLANT.get()
+                    && !(block.get() instanceof MAFGlassJarBlock)) {
                 blockModels.createTrivialCube(block.get());
             }
         });
@@ -96,6 +98,18 @@ public class MAFModelProvider extends ModelProvider {
                     )
             );
         });
+
+        //basil plant - simple 2-stage crop-style model (age 0 / age 1)
+        Block basilPlant = MAFBlocks.BASIL_PLANT.get();
+        blockModels.registerSimpleFlatItemModel(basilPlant.asItem());
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(basilPlant).with(
+                        PropertyDispatch.initial(net.carqui.meadowandforest.block.MAFBasilPlantBlock.AGE)
+                                .generate(age -> BlockModelGenerators.plainVariant(
+                                        blockModels.createSuffixedVariant(
+                                                basilPlant, "_stage" + age, ModelTemplates.CROP, TextureMapping::crop)))
+                )
+        );
 
         //tomato crop
         Block tomatoCrop = MAFBlocks.TOMATO_CROP.get();

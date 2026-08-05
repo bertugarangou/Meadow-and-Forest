@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "meadowandforest:block/basil_plant_stage0"
+    },
+    "age=1": {
+      "model": "meadowandforest:block/basil_plant_stage1"
+    }
+  }
+}

@@ -3,6 +3,10 @@ package net.carqui.meadowandforest;
 import net.carqui.meadowandforest.datagen.*;
 import net.carqui.meadowandforest.item.MAFItems;
 import net.carqui.meadowandforest.loot.SeedSwapLootModifier;
+import net.carqui.meadowandforest.worldgen.MAFBiomeModifiers;
+import net.carqui.meadowandforest.worldgen.MAFConfiguredFeatures;
+import net.carqui.meadowandforest.worldgen.MAFPlacedFeatures;
+import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -34,6 +38,14 @@ public class MAFDataGen {
     public static void gatherData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
+
+        // Basil worldgen: configured feature, placed features, and biome modifiers.
+        event.createDatapackRegistryObjects(
+                new RegistrySetBuilder()
+                        .add(Registries.CONFIGURED_FEATURE, MAFConfiguredFeatures::bootstrap)
+                        .add(Registries.PLACED_FEATURE, MAFPlacedFeatures::bootstrap)
+                        .add(net.neoforged.neoforge.registries.NeoForgeRegistries.Keys.BIOME_MODIFIERS, MAFBiomeModifiers::bootstrap)
+        );
 
         var lookupProvider = event.getLookupProvider();
         generator.addProvider(true, new MAFBlockTagsProvider(packOutput, lookupProvider));

@@ -63,4 +63,16 @@ public class MAFBlocks {
                     .instabreak()
                     .sound(SoundType.CROP)
                     .pushReaction(PushReaction.DESTROY)));
+
+    // Wild basil - generates naturally on grass (see worldgen package), can also be
+    // planted like a flower. Uses registerBlock so it gets its own BlockItem ("basil_plant")
+    // registered automatically, matching the "drops basil plant, replant like a flower" behavior.
+    public static final DeferredBlock<MAFBasilPlantBlock> BASIL_PLANT = registerBlock("basil_plant",
+            properties -> new MAFBasilPlantBlock(properties
+                    .mapColor(MapColor.PLANT)
+                    .noCollision()
+                    .randomTicks()
+                    .instabreak()
+                    .sound(SoundType.GRASS)
+                    .pushReaction(PushReaction.DESTROY)));
 }

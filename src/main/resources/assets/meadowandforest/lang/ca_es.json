@@ -31,5 +31,7 @@
   "block.meadowandforest.red_glass_jar": "Pot de vidre vermell",
   "block.meadowandforest.white_glass_jar": "Pot de vidre blanc",
   "block.meadowandforest.yellow_glass_jar": "Pot de vidre groc",
-  "block.meadowandforest.tomato_crop": "Planta de tomata"
+  "block.meadowandforest.tomato_crop": "Planta de tomata",
+  "item.meadowandforest.basil_leaves": "Fulles d'alfàbrega",
+  "item.meadowandforest.basil_leaves_dried": "Fulles d'alfàbrega assequades",
 }

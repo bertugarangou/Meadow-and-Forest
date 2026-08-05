@@ -1,4 +1,5 @@
 {
+  "block.meadowandforest.basil_plant": "Basil Plant",
   "block.meadowandforest.black_glass_jar": "Black Glass Jar",
   "block.meadowandforest.blue_glass_jar": "Blue Glass Jar",
   "block.meadowandforest.brown_glass_jar": "Brown Glass Jar",
@@ -19,6 +20,8 @@
   "block.meadowandforest.yellow_glass_jar": "Yellow Glass Jar",
   "creativetab.meadowandforest.tab_items": "Meadow And Forest",
   "item.meadowandforest.baguette_bread_breaddough": "Baguette Bread Breaddough",
+  "item.meadowandforest.basil_leaves": "Basil Leaves",
+  "item.meadowandforest.basil_leaves_dried": "Basil Leaves Dried",
   "item.meadowandforest.big_bread_breaddough": "Big Bread Breaddough",
   "item.meadowandforest.breaddough": "Breaddough",
   "item.meadowandforest.cane": "Cane",

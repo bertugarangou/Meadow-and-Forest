@@ -30,5 +30,7 @@
   "block.meadowandforest.purple_glass_jar": "Purple Glass Jar",
   "block.meadowandforest.red_glass_jar": "Red Glass Jar",
   "block.meadowandforest.white_glass_jar": "White Glass Jar",
-  "block.meadowandforest.yellow_glass_jar": "Yellow Glass Jar"
+  "block.meadowandforest.yellow_glass_jar": "Yellow Glass Jar",
+  "item.meadowandforest.basil_leaves": "Basil Leaves",
+  "item.meadowandforest.basil_leaves_dried": "Basil Leaves Dried"
 }

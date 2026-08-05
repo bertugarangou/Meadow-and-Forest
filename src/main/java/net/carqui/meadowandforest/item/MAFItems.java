@@ -31,6 +31,10 @@ public class MAFItems {
                     .saturationModifier(0.4f)
                     .build()));
     public static final DeferredItem<Item> CANE = ITEMS.registerSimpleItem("cane");
+    // Harvested by shearing a mature Basil Plant. See MAFBasilPlantBlock.
+    public static final DeferredItem<Item> BASIL_LEAVES = ITEMS.registerSimpleItem("basil_leaves");
+    public static final DeferredItem<Item> BASIL_LEAVES_DRIED = ITEMS.registerSimpleItem("basil_leaves_dried");
+
     public static final DeferredItem<Item> TOMATO_SOUP = ITEMS.registerSimpleItem("tomato_soup",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(6)

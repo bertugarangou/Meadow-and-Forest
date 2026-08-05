@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "meadowandforest:block/basil_plant_stage1"
+  }
+}
