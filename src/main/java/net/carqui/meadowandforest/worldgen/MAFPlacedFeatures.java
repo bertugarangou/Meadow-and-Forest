@@ -33,11 +33,11 @@ public final class MAFPlacedFeatures {
     public static final ResourceKey<PlacedFeature> BASIL_PATCH_RARE = ResourceKey.create(
             Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(MAF.MOD_ID, "basil_patch_rare"));
 
-    // Higher = rarer.
+    // 1/N*100 = %
     // Common: Plains / Sunflower Plains / Meadow.
     // Rare: Sparse Jungle.
-    private static final int COMMON_RARITY = 25; // ~4% of chunks
-    private static final int RARE_RARITY = 30;   // ~3.3% of chunks
+    private static final int COMMON_RARITY = 58; // ~1.8% of placement oportunities per chunks
+    private static final int RARE_RARITY = 87;   // ~1.15% of placement oportunities per chunks
 
     /**
      * Registers the common and rare placed features, each combining the shared
