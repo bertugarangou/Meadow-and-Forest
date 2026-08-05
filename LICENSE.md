@@ -2,7 +2,7 @@
 
 This project has different subfolders and folders with different licenses:  
 
-Art, media content and any file under the following directories and subdirectories recursivelly and not owned by "Mojang AB. TM Microsoft Corporation":
+Art, media content and any file under the following directories and subdirectories recursively and not owned by "Mojang AB. TM Microsoft Corporation":
 
 /src/main/resources/  
 /src/main/resources/assets  

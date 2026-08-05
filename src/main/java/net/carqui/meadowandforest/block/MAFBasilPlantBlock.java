@@ -27,15 +27,15 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jspecify.annotations.NonNull;
 
 
 /**
  * Wild Basil plant.
- *
  * - Two growth stages: age 0 (freshly planted) and age 1 (mature / max age).
  * - Naturally generated basil always spawns already at age 1 (see MAFConfiguredFeatures).
  * - Player-planted basil starts at age 0 and slowly grows to age 1 via random ticks.
- * - Breaking the block (at any age) drops the "basil plant" item, i.e. its own
+ * - Breaking the block (at any age) drops the "basil plant" item, i.e., its own
  *   BlockItem (registered automatically by MAFBlocks.registerBlock), so it can be
  *   re-planted like a flower. See MAFBlockLootTableProvider for the drop table.
  * - Right-clicking a mature (age 1) plant with Shears harvests 1-2 Basil Leaves
@@ -60,18 +60,18 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         if (state.getValue(AGE) < MAX_AGE) {
             level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), Block.UPDATE_CLIENTS);
         }
@@ -83,7 +83,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return state.getValue(AGE) >= MAX_AGE ? SHAPE_MATURE : SHAPE_YOUNG;
     }
 
@@ -92,7 +92,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     // #dirt into narrower tags and moved Grass Block out of it - #supports_vegetation is
     // the new purpose-built tag covering everything flowers/bushes could survive on before.)
     @Override
-    protected boolean mayPlaceOn(BlockState state, BlockGetter level, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
         return state.is(BlockTags.SUPPORTS_VEGETATION);
     }
 
@@ -102,7 +102,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (state.getValue(AGE) < MAX_AGE && random.nextInt(GROWTH_CHANCE_DENOMINATOR) == 0) {
             level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), Block.UPDATE_CLIENTS);
         }
@@ -110,8 +110,8 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
 
     // Right-clicking a mature plant with Shears harvests leaves without destroying it.
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
-                                           Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NonNull InteractionResult useItemOn(ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos,
+                                                   @NonNull Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hitResult) {
         if (stack.is(Items.SHEARS) && state.getValue(AGE) >= MAX_AGE) {
             if (!level.isClientSide()) {
                 boolean nextToTomato = isAdjacentToTomatoCrop(level, pos);

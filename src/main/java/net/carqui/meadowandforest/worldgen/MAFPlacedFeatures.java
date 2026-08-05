@@ -19,7 +19,6 @@ import java.util.List;
 
 /**
  * Placed features describing WHERE / HOW OFTEN Basil patches generate.
- *
  * Since Minecraft 26.1 removed the random_patch feature type, a "patch" is now
  * built directly out of placement modifiers: CountPlacement repeats the single
  * SIMPLE_BLOCK feature 1-4 times, and RandomOffsetPlacement scatters each of

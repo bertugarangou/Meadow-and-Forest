@@ -23,6 +23,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
+import org.jspecify.annotations.NonNull;
 
 public class MAFTomatoCropBlock extends CropBlock {
 
@@ -37,18 +38,18 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected ItemLike getBaseSeedId() {
+    protected @NonNull ItemLike getBaseSeedId() {
         return MAFItems.TOMATO_SEEDS.get();
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, @NonNull BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(TRELLISED, HALF);
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
             return TRELLIS_TOP_SHAPE;
         }
@@ -56,7 +57,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    protected boolean canSurvive(BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
         if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
             return super.canSurvive(state, level, pos);
         }
@@ -66,7 +67,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState, RandomSource random) {
+    protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess ticks, @NonNull BlockPos pos, Direction directionToNeighbour, @NonNull BlockPos neighbourPos, @NonNull BlockState neighbourState, @NonNull RandomSource random) {
         DoubleBlockHalf half = state.getValue(HALF);
         if (directionToNeighbour.getAxis() != Direction.Axis.Y
                 || half == DoubleBlockHalf.LOWER != (directionToNeighbour == Direction.UP)
@@ -80,7 +81,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    protected @NonNull InteractionResult useItemOn(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hitResult) {
         if (state.getValue(HALF) == DoubleBlockHalf.LOWER && !state.getValue(TRELLISED) && stack.is(MAFItems.CANE.get()) && getAge(state) <= 1) {
             BlockPos abovePos = pos.above();
             if (pos.getY() >= level.getMaxY() || !level.getBlockState(abovePos).canBeReplaced()) {
@@ -90,8 +91,8 @@ public class MAFTomatoCropBlock extends CropBlock {
                 if (!player.getAbilities().instabuild) {
                     stack.shrink(1);
                 }
-                level.setBlock(pos, state.setValue(TRELLISED, true), 2);
-                level.setBlock(abovePos, state.setValue(TRELLISED, true).setValue(HALF, DoubleBlockHalf.UPPER), 2);
+                level.setBlock(pos, state.setValue(TRELLISED, true), UPDATE_CLIENTS);
+                level.setBlock(abovePos, state.setValue(TRELLISED, true).setValue(HALF, DoubleBlockHalf.UPPER), UPDATE_CLIENTS);
             }
             return InteractionResult.SUCCESS;
         }
@@ -99,11 +100,11 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    protected @NonNull InteractionResult useWithoutItem(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hitResult) {
         if (state.getValue(HALF) == DoubleBlockHalf.LOWER && state.getValue(TRELLISED) && isMaxAge(state)) {
             if (!level.isClientSide()) {
                 Block.popResource(level, pos, new ItemStack(MAFItems.VINE_TOMATO.get(), 2 + level.getRandom().nextInt(3)));
-                level.setBlock(pos, state.setValue(getAgeProperty(), REGROWTH_AGE), 2);
+                level.setBlock(pos, state.setValue(getAgeProperty(), REGROWTH_AGE), UPDATE_CLIENTS);
             }
             return InteractionResult.SUCCESS;
         }
@@ -111,7 +112,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    protected void randomTick(BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (state.getValue(HALF) != DoubleBlockHalf.LOWER) return;
         if (!level.isAreaLoaded(pos, 1)) return;
         if (level.getRawBrightness(pos, 0) >= 9) {
@@ -119,7 +120,7 @@ public class MAFTomatoCropBlock extends CropBlock {
             if (age < getMaxAge()) {
                 float growthSpeed = getGrowthSpeed(state, level, pos);
                 if (CommonHooks.canCropGrow(level, pos, state, random.nextInt((int) (25.0F / growthSpeed) + 1) == 0)) {
-                    level.setBlock(pos, state.setValue(getAgeProperty(), age + 1), 2);
+                    level.setBlock(pos, state.setValue(getAgeProperty(), age + 1), UPDATE_CLIENTS);
                     CommonHooks.fireCropGrowPost(level, pos, state);
                 }
             }
@@ -127,7 +128,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
             BlockPos belowPos = pos.below();
             BlockState belowState = level.getBlockState(belowPos);
@@ -137,7 +138,7 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         if (state.getValue(HALF) == DoubleBlockHalf.UPPER) {
             BlockPos belowPos = pos.below();
             BlockState belowState = level.getBlockState(belowPos);
@@ -150,9 +151,9 @@ public class MAFTomatoCropBlock extends CropBlock {
     }
 
     @Override
-    public void growCrops(Level level, BlockPos pos, BlockState state) {
+    public void growCrops(@NonNull Level level, @NonNull BlockPos pos, BlockState state) {
         if (state.getValue(HALF) != DoubleBlockHalf.LOWER) return;
         int age = Math.min(getMaxAge(), getAge(state) + getBonemealAgeIncrease(level));
-        level.setBlock(pos, state.setValue(getAgeProperty(), age), 2);
+        level.setBlock(pos, state.setValue(getAgeProperty(), age), UPDATE_CLIENTS);
     }
 }
