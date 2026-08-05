@@ -28,7 +28,15 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Map;
 
+/**
+ * Generates block state and item model JSON for every registered block/item:
+ * generic cubes by default, plus hand-built models for glass jars, Basil, and
+ * the tomato crop where a simple cube doesn't fit.
+ */
 public class MAFModelProvider extends ModelProvider {
+    /**
+     * Creates the provider bound to this mod's namespace.
+     */
     public MAFModelProvider(PackOutput output) {
         super(output, MAF.MOD_ID);
     }
@@ -40,6 +48,10 @@ public class MAFModelProvider extends ModelProvider {
             4, "_four_jars"
     );
 
+    /**
+     * Builds every item and block model: flat item icons by default, trivial cube
+     * blocks by default, and custom logic for glass jars, Basil, and the tomato crop.
+     */
     @Override
     protected void registerModels(BlockModelGenerators blockModels, @NonNull ItemModelGenerators itemModels) {
 

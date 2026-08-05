@@ -6,7 +6,13 @@ import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
+/**
+ * Defines every glass jar color variant and the vanilla glass block each one is crafted from.
+ */
 public final class MAFGlassJarVariants {
+    /**
+     * One glass jar color variant: its block registry name and its crafting ingredient.
+     */
     public record Variant(String registryName, ItemLike ingredient) {}
 
     public static final List<Variant> ALL = List.of(

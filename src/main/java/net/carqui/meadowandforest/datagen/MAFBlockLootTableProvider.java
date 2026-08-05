@@ -24,11 +24,21 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Set;
+/**
+ * Generates block loot tables: glass jar drop-by-candle-count, the tomato crop's
+ * conditional tomato/vine-tomato drops, and Basil's simple self-drop.
+ */
 public class MAFBlockLootTableProvider extends BlockLootSubProvider {
+    /**
+     * Creates the provider with no explicit drop exclusions and all vanilla feature flags enabled.
+     */
     public MAFBlockLootTableProvider(HolderLookup.Provider registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
+    /**
+     * Registers the loot table for every block that needs a non-default drop.
+     */
     @Override
     protected void generate() {
         add(MAFBlocks.TOMATO_CROP.get(), createTomatoCropDrops());
@@ -37,6 +47,10 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(MAFBlocks.BASIL_PLANT.get());
     }
 
+    /**
+     * Builds a loot table that drops the jar itself with the right candle count and
+     * firefly state copied over, so breaking a jar keeps its current contents.
+     */
     private LootTable.Builder createGlassJarDrops(Block jar) {
         LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1));
 
@@ -55,6 +69,10 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
         return LootTable.lootTable().withPool(pool);
     }
 
+    /**
+     * Builds the tomato crop's loot table: drops nothing unless the lower half is
+     * mature, then 2 Vine Tomatoes if trellised or 2 Tomatoes otherwise.
+     */
     private LootTable.Builder createTomatoCropDrops() {
         CropBlock crop = MAFBlocks.TOMATO_CROP.get();
         int maxAge = crop.getMaxAge();
@@ -94,6 +112,10 @@ public class MAFBlockLootTableProvider extends BlockLootSubProvider {
     }
 
 
+    /**
+     * Lists every registered block so the loot table generator can validate
+     * that each one has an explicit loot table or an accepted default.
+     */
     @Override
     protected @NonNull Iterable<Block> getKnownBlocks() {
         return (MAFBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator);

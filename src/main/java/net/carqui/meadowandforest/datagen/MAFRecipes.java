@@ -21,27 +21,50 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * Registers every crafting, smelting, smoking, and campfire recipe for the mod,
+ * including glass jars, breads, tomato dishes, and the cane trellis item.
+ */
 public class MAFRecipes extends RecipeProvider {
+    /**
+     * Creates the recipe provider bound to this mod's registries and output.
+     */
     protected MAFRecipes(HolderLookup.Provider registries, RecipeOutput output) {
         super(registries, output);
     }
 
+    /**
+     * Datagen runner that wires {@link MAFRecipes} into the recipe provider pipeline.
+     */
     public static class Runner extends RecipeProvider.Runner {
+        /**
+         * Creates the runner bound to this mod's pack output and registries.
+         */
         public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries){
             super(packOutput, registries);
         }
 
+        /**
+         * Creates the actual {@link MAFRecipes} instance used to build recipes.
+         */
         @Override
         protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registries, @NonNull RecipeOutput output) {
             return new MAFRecipes(registries, output);
         }
 
+        /**
+         * Returns the display name shown for this datagen task.
+         */
         @Override
         public @NonNull String getName() {
             return "Meadow and Forest Recipes";
         }
     }
 
+    /**
+     * Builds every recipe the mod defines: glass jars, seeds, breads, tomato
+     * dishes, cooking variants, and the cane, plus removing vanilla bread.
+     */
     @Override
     protected void buildRecipes() {
         glassJarRecipes();
@@ -160,6 +183,9 @@ public class MAFRecipes extends RecipeProvider {
 
     }
 
+    /**
+     * Registers the shaped crafting recipe for every glass jar color variant.
+     */
     private void glassJarRecipes() {
         for (MAFGlassJarVariants.Variant variant : MAFGlassJarVariants.ALL) {
             shaped(RecipeCategory.MISC, MAFBlocks.GLASS_JARS.get(variant.registryName()).get())
@@ -174,9 +200,17 @@ public class MAFRecipes extends RecipeProvider {
     }
 
     //cooking helper class and utils
+    /**
+     * Categorizes an ingredient for {@link #cookingRecipes} so it gets the right
+     * recipe book category and set of cooking methods (smelting/smoking/campfire/blasting).
+     */
     public enum CookingKind { FOOD, ORE, GENERIC }
 
 
+    /**
+     * Registers smelting plus, depending on kind, smoking/campfire (FOOD) or
+     * blasting (ORE) recipes turning one ingredient into one result.
+     */
     protected void cookingRecipes(RecipeOutput output,
                                   CookingKind category,
                                   String group,

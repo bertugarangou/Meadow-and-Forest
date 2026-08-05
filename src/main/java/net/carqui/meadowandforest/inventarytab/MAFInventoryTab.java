@@ -13,9 +13,16 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
+/**
+ * Registers the mod's custom creative inventory tab and defines which items
+ * and blocks appear inside it.
+ */
 public class MAFInventoryTab {
     public static final DeferredRegister<CreativeModeTab> INVENTORY_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MAF.MOD_ID);
 
+    /**
+     * Registers the creative tab deferred register to the mod event bus. Call once from the main mod class.
+     */
     public static void register(IEventBus eventBus) {
         INVENTORY_TAB.register(eventBus);
     }

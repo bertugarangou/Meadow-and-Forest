@@ -55,21 +55,33 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     // Chance denominator for growth on a random tick (1 in N random ticks -> grows one stage).
     private static final int GROWTH_CHANCE_DENOMINATOR = 8;
 
+    /**
+     * Creates the block with the given properties and sets its default state to age 0.
+     */
     public MAFBasilPlantBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
+    /**
+     * Bone meal succeeds as long as the plant hasn't reached max age yet.
+     */
     public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
+    /**
+     * Bone meal only targets this plant while it hasn't reached max age yet.
+     */
     @Override
     public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
 
+    /**
+     * Advances the plant by one growth stage when bone meal is used on it.
+     */
     @Override
     public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         if (state.getValue(AGE) < MAX_AGE) {
@@ -77,11 +89,17 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
         }
     }
 
+    /**
+     * Declares the age property as part of this block's state.
+     */
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 
+    /**
+     * Returns the collision/selection shape, larger for the mature stage than the young one.
+     */
     @Override
     protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return state.getValue(AGE) >= MAX_AGE ? SHAPE_MATURE : SHAPE_YOUNG;
@@ -91,16 +109,25 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     // blocks vanilla bushes/short grass/flowers can be planted on. (Minecraft 26.1 split
     // #dirt into narrower tags and moved Grass Block out of it - #supports_vegetation is
     // the new purpose-built tag covering everything flowers/bushes could survive on before.)
+    /**
+     * Determines which blocks this plant can be placed/survive on.
+     */
     @Override
     protected boolean mayPlaceOn(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
         return state.is(BlockTags.SUPPORTS_VEGETATION);
     }
 
+    /**
+     * The plant only needs random ticks while it hasn't reached max age yet.
+     */
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
+    /**
+     * On each random tick, has a chance to grow the plant by one age stage.
+     */
     @Override
     protected void randomTick(BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (state.getValue(AGE) < MAX_AGE && random.nextInt(GROWTH_CHANCE_DENOMINATOR) == 0) {
@@ -109,6 +136,10 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     }
 
     // Right-clicking a mature plant with Shears harvests leaves without destroying it.
+    /**
+     * Handles shearing a mature plant: drops 1-2 leaves (always 2 next to a Tomato Crop),
+     * damages the shears, and resets the plant to age 0 instead of breaking it.
+     */
     @Override
     protected @NonNull InteractionResult useItemOn(ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos,
                                                    @NonNull Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hitResult) {
@@ -140,6 +171,9 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 
+    /**
+     * Checks the four horizontal neighbors of this position for a Tomato Crop block.
+     */
     private boolean isAdjacentToTomatoCrop(Level level, BlockPos pos) {
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             if (level.getBlockState(pos.relative(direction)).is(MAFBlocks.TOMATO_CROP.get())) {

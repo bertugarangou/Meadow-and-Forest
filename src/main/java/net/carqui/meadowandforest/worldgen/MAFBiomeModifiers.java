@@ -26,6 +26,10 @@ public final class MAFBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_BASIL_SPARSE_JUNGLE = ResourceKey.create(
             NeoForgeRegistries.Keys.BIOME_MODIFIERS, Identifier.fromNamespaceAndPath(MAF.MOD_ID, "add_basil_sparse_jungle"));
 
+    /**
+     * Registers the two biome modifiers that inject Basil's placed features into
+     * their target biomes at the vegetal decoration generation step.
+     */
     public static void bootstrap(BootstrapContext<BiomeModifier> context) {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);

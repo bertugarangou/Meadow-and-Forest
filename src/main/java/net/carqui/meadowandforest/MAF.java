@@ -22,6 +22,10 @@ import org.slf4j.Logger;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
+/**
+ * Main mod entry point. Holds the mod id, logger, and the global loot modifier
+ * registry, and registers all other registries during mod construction.
+ */
 @Mod(MAF.MOD_ID)
 public class MAF {
     // Define mod id in a common place for everything to reference
@@ -37,6 +41,10 @@ public class MAF {
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+    /**
+     * Runs when the mod is loaded. Registers all deferred registries (blocks, items,
+     * data components, inventory tab, loot modifiers) and hooks into the event buses.
+     */
     public MAF(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -54,10 +62,16 @@ public class MAF {
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
+    /**
+     * Runs during common mod setup, after registries are populated. Currently empty.
+     */
     private void commonSetup(FMLCommonSetupEvent event) {
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
+    /**
+     * Runs when the server starts. Currently empty.
+     */
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
     }

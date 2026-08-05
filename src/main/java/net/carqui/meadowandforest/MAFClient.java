@@ -10,14 +10,24 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen;
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 // This class will not load on dedicated servers. Accessing client side code from here is safe.
+/**
+ * Client-only mod entry point. Registers the config screen and runs client setup logging.
+ * This class is never loaded on a dedicated server.
+ */
 @Mod(value = MAF.MOD_ID, dist = Dist.CLIENT)
 // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
 @EventBusSubscriber(modid = MAF.MOD_ID, value = Dist.CLIENT)
 public class MAFClient {
+    /**
+     * Registers the mod's config screen factory so it shows up in the mods menu.
+     */
     public MAFClient(ModContainer container) {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
+    /**
+     * Runs during client setup. Currently just logs that setup has started.
+     */
     @SubscribeEvent
     static void onClientSetup(FMLClientSetupEvent event) {
         // Some client setup code

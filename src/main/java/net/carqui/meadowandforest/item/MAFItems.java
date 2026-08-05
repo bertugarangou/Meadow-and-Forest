@@ -13,6 +13,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+/**
+ * Central item registry for the mod: seeds, foods, and other standalone items
+ * that aren't automatically registered alongside a block.
+ */
 public class MAFItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MAF.MOD_ID);
 
@@ -74,6 +78,9 @@ public class MAFItems {
     public static final DeferredItem<Item> BIG_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("big_bread_breaddough");
     public static final DeferredItem<Item> BAGUETTE_BREAD_BREADDOUGH = ITEMS.registerSimpleItem("baguette_bread_breaddough");
 
+    /**
+     * Registers the item deferred register to the mod event bus. Call once from the main mod class.
+     */
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

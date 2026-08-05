@@ -27,6 +27,11 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Registers all data generation providers for the mod: worldgen registries
+ * (configured/placed features, biome modifiers), block tags, loot tables,
+ * models, language, recipes, and the grass-to-tomato-seed loot modifier.
+ */
 @EventBusSubscriber(modid = MAF.MOD_ID)
 public class MAFDataGen {
 
@@ -34,12 +39,16 @@ public class MAFDataGen {
     private static final ResourceKey<LootTable> SHORT_GRASS_LOOT_TABLE = ResourceKey.create(
             Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath("minecraft", "blocks/short_grass"));
 
+    /**
+     * Runs on the data generation event bus. Registers every datagen provider
+     * the mod needs and builds the worldgen registry entries via a RegistrySetBuilder.
+     */
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
 
-        // Basil worldgen: configured feature, placed features, and biome modifiers.
+        // Basil worldgen: configured feature, placed features and biome modifiers.
         event.createDatapackRegistryObjects(
                 new RegistrySetBuilder()
                         .add(Registries.CONFIGURED_FEATURE, MAFConfiguredFeatures::bootstrap)

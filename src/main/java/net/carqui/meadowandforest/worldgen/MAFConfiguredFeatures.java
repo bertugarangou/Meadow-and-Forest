@@ -25,6 +25,10 @@ public final class MAFConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> BASIL_PATCH = ResourceKey.create(
             Registries.CONFIGURED_FEATURE, Identifier.fromNamespaceAndPath(MAF.MOD_ID, "basil_patch"));
 
+    /**
+     * Registers the Basil configured feature: a single mature plant block, ready
+     * to be repeated into a patch by the placement modifiers.
+     */
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         // Wild basil always spawns fully grown (age = MAX_AGE).
         BlockStateProvider basilMatureState = BlockStateProvider.simple(

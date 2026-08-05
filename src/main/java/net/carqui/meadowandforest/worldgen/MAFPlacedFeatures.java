@@ -39,6 +39,10 @@ public final class MAFPlacedFeatures {
     private static final int COMMON_RARITY = 25; // ~4% of chunks
     private static final int RARE_RARITY = 30;   // ~3.3% of chunks
 
+    /**
+     * Registers the common and rare placed features, each combining the shared
+     * placement modifiers with their own rarity chance.
+     */
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
         var basilPatch = configuredFeatures.getOrThrow(MAFConfiguredFeatures.BASIL_PATCH);
@@ -49,6 +53,10 @@ public final class MAFPlacedFeatures {
 
     // 1-4 plants scattered in a small radius, snapped to the surface heightmap,
     // only directly on Grass Block, and only where it's air.
+    /**
+     * Builds the shared placement modifier chain: rarity check, 1-4 count, small
+     * radius scatter, snap to surface, Grass Block + air checks, and biome filter.
+     */
     private static List<PlacementModifier> placementModifiers(int rarity) {
         return List.of(
                 RarityFilter.onAverageOnceEvery(rarity),

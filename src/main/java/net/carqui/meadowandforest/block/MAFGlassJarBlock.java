@@ -28,6 +28,10 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.function.ToIntFunction;
 
+/**
+ * A candle-like jar block that can hold a firefly, catching it from a Firefly Bush
+ * or releasing it back into Short Grass. Reuses candle count/lit/waterlogged states.
+ */
 public class MAFGlassJarBlock extends CandleBlock {
     public static final BooleanProperty FIREFLY_INSIDE = BooleanProperty.create("firefly_inside");
 
@@ -43,6 +47,10 @@ public class MAFGlassJarBlock extends CandleBlock {
         return LIGHT_LEVELS[state.getValue(CANDLES) - 1];
     };
 
+    /**
+     * Creates the block with the given properties and sets its default state
+     * to one unlit, dry candle slot with no firefly inside.
+     */
     public MAFGlassJarBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
@@ -52,17 +60,26 @@ public class MAFGlassJarBlock extends CandleBlock {
                 .setValue(FIREFLY_INSIDE, false));
     }
 
+    /**
+     * Adds the firefly-inside flag to this block's state, on top of the candle properties.
+     */
     @Override
     protected void createBlockStateDefinition(StateDefinition.@NonNull Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
         builder.add(FIREFLY_INSIDE);
     }
 
+    /**
+     * Glass jars can never be lit, unlike regular candles.
+     */
     @Override
     protected boolean canBeLit(@NonNull BlockState state) {
         return false;
     }
 
+    /**
+     * Returns the jar's collision/selection shape, which changes with the candle count.
+     */
     @Override
     public @NotNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return switch (state.getValue(CANDLES)) {
@@ -73,13 +90,25 @@ public class MAFGlassJarBlock extends CandleBlock {
         };
     }
 
+    /**
+     * Disables the default candle right-click behavior; firefly capture/release is
+     * handled separately by {@link InteractionHandler}.
+     */
     @Override
     protected @NonNull InteractionResult useItemOn(@NonNull ItemStack stack, @NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull InteractionHand hand, @NonNull BlockHitResult hitResult) {
         return InteractionResult.PASS;
     }
 
+    /**
+     * Handles right-clicking Firefly Bush or Short Grass while holding a glass jar,
+     * moving the firefly between the jar item and the world block.
+     */
     @EventBusSubscriber(modid = MAF.MOD_ID)
     public static class InteractionHandler {
+        /**
+         * Catches a firefly from a Firefly Bush into an empty jar, or releases a
+         * firefly from a jar into Short Grass. Ignored for any other block or item.
+         */
         @SubscribeEvent
         public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
             boolean clientSide = event.getLevel().isClientSide();
@@ -134,6 +163,9 @@ public class MAFGlassJarBlock extends CandleBlock {
             event.setCanceled(true);
         }
 
+        /**
+         * Checks whether the given item stack is any glass jar color variant.
+         */
         private static boolean isGlassJar(ItemStack stack) {
             for (MAFGlassJarVariants.Variant variant : MAFGlassJarVariants.ALL) {
                 if (stack.is(MAFBlocks.GLASS_JARS.get(variant.registryName()).get().asItem())) {
