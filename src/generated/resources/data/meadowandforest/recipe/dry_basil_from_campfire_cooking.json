@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 360,
+  "experience": 0.1,
+  "group": "basil",
+  "ingredient": "meadowandforest:basil_leaves",
+  "result": {
+    "id": "meadowandforest:basil_leaves_dried"
+  }
+}

@@ -170,6 +170,9 @@ public class MAFRecipes extends RecipeProvider {
         cookingRecipes(output, CookingKind.FOOD, "big_bread_breaddough", MAFItems.BIG_BREAD_BREADDOUGH.get(), MAFItems.WHOLE_BREAD, 0.2f, 160, "big_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
         cookingRecipes(output, CookingKind.FOOD, "baguette_bread_breaddough", MAFItems.BAGUETTE_BREAD_BREADDOUGH.get(), Items.BREAD, 0.15f, 160, "baguette", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
 
+        //basil cooking
+        cookingRecipes(output, CookingKind.FOOD, "basil", MAFItems.BASIL_LEAVES.get(), MAFItems.BASIL_LEAVES_DRIED.get(), 0.1f, 120, "dry_basil", getHasName(MAFItems.BASIL_LEAVES.get()), has(MAFItems.BASIL_LEAVES.get()));
+
         //cane recipe from sticks
         shaped(RecipeCategory.MISC, MAFItems.CANE.get())
                 .pattern("I I")

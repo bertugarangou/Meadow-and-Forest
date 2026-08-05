@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 60,
+  "experience": 0.1,
+  "group": "basil",
+  "ingredient": "meadowandforest:basil_leaves",
+  "result": {
+    "id": "meadowandforest:basil_leaves_dried"
+  }
+}

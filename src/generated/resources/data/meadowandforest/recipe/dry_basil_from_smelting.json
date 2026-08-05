@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 120,
+  "experience": 0.1,
+  "group": "basil",
+  "ingredient": "meadowandforest:basil_leaves",
+  "result": {
+    "id": "meadowandforest:basil_leaves_dried"
+  }
+}
