@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "group": "cane",
   "key": {
-    "S": "minecraft:stick"
+    "I": "minecraft:stick",
+    "S": "minecraft:string"
   },
   "pattern": [
+    "I I",
     " S ",
-    "S S",
-    "   "
+    "I I"
   ],
   "result": {
     "id": "meadowandforest:cane"

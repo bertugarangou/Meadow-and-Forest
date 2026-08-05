@@ -149,11 +149,12 @@ public class MAFRecipes extends RecipeProvider {
 
         //cane recipe from sticks
         shaped(RecipeCategory.MISC, MAFItems.CANE.get())
+                .pattern("I I")
                 .pattern(" S ")
-                .pattern("S S")
-                .pattern("   ")
+                .pattern("I I")
                 .group("cane")
-                .define('S', Items.STICK)
+                .define('I', Items.STICK)
+                .define('S', Items.STRING)
                 .unlockedBy(getHasName(Items.STICK), has(Items.STICK))
                 .save(output);
 
