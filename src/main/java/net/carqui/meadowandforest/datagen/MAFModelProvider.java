@@ -67,7 +67,9 @@ public class MAFModelProvider extends ModelProvider {
             //exceptions manually handled below
             if (block.get() != MAFBlocks.TOMATO_CROP.get()
                     && block.get() != MAFBlocks.BASIL_PLANT.get()
-                    && !(block.get() instanceof MAFGlassJarBlock)) {
+                    && !(block.get() instanceof MAFGlassJarBlock)
+                    && block.get() != MAFBlocks.DRYING_TRAY.get()
+            ) {
                 blockModels.createTrivialCube(block.get());
             }
         });
@@ -141,6 +143,27 @@ public class MAFModelProvider extends ModelProvider {
                                                 TextureMapping::crop)))
                 )
         );
+
+        //drying tray
+        Block dryingTray = MAFBlocks.DRYING_TRAY.get();
+        blockModels.blockStateOutput.accept(
+                MultiVariantGenerator.dispatch(
+                        dryingTray,
+                        BlockModelGenerators.plainVariant(
+                                Identifier.fromNamespaceAndPath(MAF.MOD_ID, "block/drying_tray")
+                        )
+                )
+        );
+
+
+
+
+
+
+
+
+
+
     }
 
 }

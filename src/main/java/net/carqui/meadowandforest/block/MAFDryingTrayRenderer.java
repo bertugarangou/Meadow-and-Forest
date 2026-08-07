@@ -37,7 +37,7 @@ public class MAFDryingTrayRenderer implements BlockEntityRenderer<MAFDryingTrayB
     // Local-space (0-1) centers of the 2x2 grid quadrants, matching MAFDryingTrayBlock#resolveSlot.
     private static final double[] SLOT_X = {0.3, 0.7, 0.3, 0.7};
     private static final double[] SLOT_Z = {0.3, 0.3, 0.7, 0.7};
-    private static final double SLOT_Y = 2.0 / 16.0;
+    private static final double SLOT_Y = 14.0 / 16.0;
 
     public MAFDryingTrayRenderer(BlockEntityRendererProvider.Context context) {
     }
@@ -68,7 +68,7 @@ public class MAFDryingTrayRenderer implements BlockEntityRenderer<MAFDryingTrayB
             poseStack.pushPose();
             poseStack.translate(SLOT_X[i], SLOT_Y, SLOT_Z[i]);
             poseStack.mulPose(Axis.XP.rotationDegrees(90.0f));
-            poseStack.scale(0.4f, 0.4f, 0.4f);
+            poseStack.scale(0.3f, 0.3f, 0.3f);
 
             ItemStackRenderState itemRenderState = new ItemStackRenderState();
             Minecraft.getInstance().getItemModelResolver().updateForTopItem(
