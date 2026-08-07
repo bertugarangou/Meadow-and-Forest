@@ -22,22 +22,12 @@ import org.jspecify.annotations.Nullable;
  * the world, at their 2x2 quadrant positions, matching the slot targeting in
  * {@link MAFDryingTrayBlock}. No progress bar/tint - items simply visually
  * swap to their result the moment drying completes (server sync driven).
- * <p>
- * NOTE: This is the file most likely to need small adjustments once compiled -
- * 26.2's block entity rendering uses a newer submit/render-state pipeline that
- * isn't fully documented locally. If `ItemStackRenderState#submit` or
- * `ItemModelResolver#updateForTopItem` don't match exactly, your IDE's
- * autocomplete against the actual NeoForge/Minecraft jars will show the
- * correct method names/signatures quickly - the overall structure (extract
- * 4 ItemStacks into the render state, then submit each with a PoseStack
- * offset per quadrant) will not need to change.
  */
 public class MAFDryingTrayRenderer implements BlockEntityRenderer<MAFDryingTrayBlockEntity, MAFDryingTrayRenderer.RenderState> {
 
-    // Local-space (0-1) centers of the 2x2 grid quadrants, matching MAFDryingTrayBlock#resolveSlot.
     private static final double[] SLOT_X = {0.3, 0.7, 0.3, 0.7};
     private static final double[] SLOT_Z = {0.3, 0.3, 0.7, 0.7};
-    private static final double SLOT_Y = 14.0 / 16.0;
+    private static final double SLOT_Y = 10.75 / 16.0;
 
     public MAFDryingTrayRenderer(BlockEntityRendererProvider.Context context) {
     }
