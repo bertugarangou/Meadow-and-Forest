@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.NonNull;
@@ -32,7 +33,7 @@ import org.jspecify.annotations.Nullable;
  */
 public class MAFDryingTrayBlock extends BaseEntityBlock {
 
-    private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 2.0, 16.0);
+    private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 14.0, 16.0);
 
     public static final MapCodec<MAFDryingTrayBlock> CODEC = simpleCodec(MAFDryingTrayBlock::new);
 
@@ -67,7 +68,10 @@ public class MAFDryingTrayBlock extends BaseEntityBlock {
             return InteractionResult.PASS;
         }
 
-        int slotIndex = resolveSlot(pos, hitResult);
+        int slotIndex = resolveSlot(player, pos);
+        if (slotIndex == -1) {
+            return InteractionResult.PASS;
+        }
         MAFDryingTrayBlockEntity.DryingSlot slot = tray.getSlot(slotIndex);
 
         if (!slot.isEmpty()) {
@@ -111,11 +115,34 @@ public class MAFDryingTrayBlock extends BaseEntityBlock {
      * Maps the exact hit location on the tray's top face to one of the 4
      * quadrants (0 = -X-Z, 1 = +X-Z, 2 = -X+Z, 3 = +X+Z).
      */
-    private static int resolveSlot(BlockPos pos, BlockHitResult hitResult) {
+    /*private static int resolveSlot(BlockPos pos, BlockHitResult hitResult) {
         double localX = hitResult.getLocation().x - pos.getX();
         double localZ = hitResult.getLocation().z - pos.getZ();
         int col = localX >= 0.5 ? 1 : 0;
         int row = localZ >= 0.5 ? 1 : 0;
+        return row * 2 + col;
+    }*/
+    private static int resolveSlot(Player player, BlockPos pos) {
+        Vec3 eye = player.getEyePosition();
+        Vec3 look = player.getLookAngle();
+
+        double planeY = pos.getY() + 10.75 / 16.0;
+        double t = (planeY - eye.y) / look.y;
+
+        Vec3 hit = eye.add(look.scale(t));
+
+        double localX = hit.x - pos.getX();
+        double localZ = hit.z - pos.getZ();
+
+        // return -1 if the hit is outside the tray bounds
+        if (localX < 0 || localX > 1 || localZ < 0 || localZ > 1) {
+            return -1;
+        }
+
+
+        int col = localX >= 0.5 ? 1 : 0;
+        int row = localZ >= 0.5 ? 1 : 0;
+
         return row * 2 + col;
     }
 }

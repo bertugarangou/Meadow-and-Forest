@@ -3,6 +3,7 @@ package net.carqui.meadowandforest.block;
 import net.carqui.meadowandforest.recipe.DryingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
@@ -29,16 +30,16 @@ public class MAFDryingTrayBlockEntity extends BlockEntity {
 
     public static final int SLOT_COUNT = 4;
     // Fixed drying duration for every recipe: 2 in-game days.
-    public static final double DRYING_TIME_TICKS = 48000.0;
+    public static final int DRYING_TIME_TICKS = 12000;
     // How often (in ticks) the environmental modifier is recomputed and cached.
-    private static final int ENVIRONMENT_CHECK_INTERVAL = 40;
+    private static final int ENVIRONMENT_CHECK_INTERVAL = 200;
 
     /**
      * One drying slot: the item being dried (or already-finished result), how
      * much progress it has accumulated, and whether it has finished drying.
      */
-    public record DryingSlot(ItemStack stack, double progress, boolean done) {
-        public static final DryingSlot EMPTY = new DryingSlot(ItemStack.EMPTY, 0.0, false);
+    public record DryingSlot(ItemStack stack, int progress, boolean done) {
+        public static final DryingSlot EMPTY = new DryingSlot(ItemStack.EMPTY, 0, false);
 
         public boolean isEmpty() {
             return this.stack.isEmpty();
@@ -71,7 +72,8 @@ public class MAFDryingTrayBlockEntity extends BlockEntity {
      */
     public boolean insert(int index, ItemStack singleItem) {
         if (!this.slots[index].isEmpty()) return false;
-        this.slots[index] = new DryingSlot(singleItem, 0.0, false);
+        this.slots[index] = new DryingSlot(singleItem, 0, false);
+
         this.setChanged();
         this.syncToClients();
         return true;
@@ -116,10 +118,23 @@ public class MAFDryingTrayBlockEntity extends BlockEntity {
             DryingSlot slot = be.slots[i];
             if (slot.isEmpty() || slot.done()) continue;
 
-            double newProgress = slot.progress() + multiplier;
+            int newProgress = (slot.progress() + (int) multiplier);
             if (newProgress >= DRYING_TIME_TICKS) {
                 ItemStack result = resolveResult(serverLevel, slot.stack());
                 be.slots[i] = new DryingSlot(result, DRYING_TIME_TICKS, true);
+                //show green growing particles
+                serverLevel.sendParticles(
+                        ParticleTypes.HAPPY_VILLAGER,
+                        pos.getX() + 0.5,
+                        pos.getY() + 0.8,
+                        pos.getZ() + 0.5,
+                        8,
+                        0.2,
+                        0.2,
+                        0.2,
+                        0.02
+
+                );
             } else {
                 be.slots[i] = new DryingSlot(slot.stack(), newProgress, false);
             }
@@ -184,7 +199,7 @@ public class MAFDryingTrayBlockEntity extends BlockEntity {
                 this.slots[i] = DryingSlot.EMPTY;
                 continue;
             }
-            double progress = slotIn.getDoubleOr("progress", 0.0);
+            int progress = (int) slotIn.getDoubleOr("progress", 0);
             boolean done = slotIn.getBooleanOr("done", false);
             this.slots[i] = new DryingSlot(stack, progress, done);
         }

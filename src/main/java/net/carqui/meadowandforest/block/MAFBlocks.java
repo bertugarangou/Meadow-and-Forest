@@ -100,7 +100,7 @@ public class MAFBlocks {
     public static final DeferredBlock<MAFDryingTrayBlock> DRYING_TRAY = registerBlock("drying_tray",
             properties -> new MAFDryingTrayBlock(properties
                     .mapColor(MapColor.WOOD)
-                    .strength(2.0F)
+                    .strength(3F)
                     .sound(SoundType.WOOD)
                     .noOcclusion()));
 }
