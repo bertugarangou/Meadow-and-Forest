@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "meadowandforest:block/basil_plant_stage0"
+    "cross": "meadowandforest:block/basil_plant_stage2"
   }
 }

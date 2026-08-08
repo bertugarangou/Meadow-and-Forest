@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -45,9 +44,9 @@ import org.jspecify.annotations.NonNull;
  */
 public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
 
-    public static final int MAX_AGE = 1;
+    public static final int MAX_AGE = 4;
     // Vanilla 0-1 integer property (the same one Bamboo uses for its small/large stalk state).
-    public static final IntegerProperty AGE = BlockStateProperties.AGE_1;
+    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
     private static final VoxelShape SHAPE_YOUNG = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
     private static final VoxelShape SHAPE_MATURE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D);
@@ -84,8 +83,9 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
      */
     @Override
     public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
-        if (state.getValue(AGE) < MAX_AGE) {
-            level.setBlock(pos, state.setValue(AGE, state.getValue(AGE) + 1), Block.UPDATE_CLIENTS);
+        int currentAge = state.getValue(AGE);
+        if (currentAge < MAX_AGE) {
+            level.setBlock(pos, state.setValue(AGE, Math.min(currentAge + 1 + random.nextInt(3), MAX_AGE)), Block.UPDATE_CLIENTS);
         }
     }
 

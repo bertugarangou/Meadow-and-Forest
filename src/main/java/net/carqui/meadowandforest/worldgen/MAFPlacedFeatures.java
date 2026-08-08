@@ -36,8 +36,8 @@ public final class MAFPlacedFeatures {
     // 1/N*100 = %
     // Common: Plains / Sunflower Plains / Meadow.
     // Rare: Sparse Jungle.
-    private static final int COMMON_RARITY = 58; // ~1.8% of placement oportunities per chunks
-    private static final int RARE_RARITY = 87;   // ~1.15% of placement oportunities per chunks
+    private static final int COMMON_RARITY = 30;
+    private static final int RARE_RARITY = 50;
 
     /**
      * Registers the common and rare placed features, each combining the shared

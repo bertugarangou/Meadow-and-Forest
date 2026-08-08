@@ -40,7 +40,12 @@ public final class MAFBiomeModifiers {
                         HolderSet.direct(
                                 biomes.getOrThrow(Biomes.PLAINS),
                                 biomes.getOrThrow(Biomes.SUNFLOWER_PLAINS),
-                                biomes.getOrThrow(Biomes.MEADOW)
+                                biomes.getOrThrow(Biomes.MEADOW),
+                                biomes.getOrThrow(Biomes.FOREST),
+                                biomes.getOrThrow(Biomes.FLOWER_FOREST),
+                                biomes.getOrThrow(Biomes.BIRCH_FOREST),
+                                biomes.getOrThrow(Biomes.DARK_FOREST),
+                                biomes.getOrThrow(Biomes.CHERRY_GROVE)
                         ),
                         HolderSet.direct(placedFeatures.getOrThrow(MAFPlacedFeatures.BASIL_PATCH_COMMON)),
                         GenerationStep.Decoration.VEGETAL_DECORATION

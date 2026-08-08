@@ -51,6 +51,7 @@ public class MAFInventoryTab {
                         output.accept(MAFItems.BASIL_LEAVES);
                         output.accept(MAFItems.BASIL_LEAVES_DRIED);
                         output.accept(MAFBlocks.DRYING_TRAY);
+                        output.accept(MAFBlocks.BASIL_PLANT);
 
 
                     }).build());

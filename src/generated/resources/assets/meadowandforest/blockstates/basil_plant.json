@@ -5,6 +5,15 @@
     },
     "age=1": {
       "model": "meadowandforest:block/basil_plant_stage1"
+    },
+    "age=2": {
+      "model": "meadowandforest:block/basil_plant_stage2"
+    },
+    "age=3": {
+      "model": "meadowandforest:block/basil_plant_stage3"
+    },
+    "age=4": {
+      "model": "meadowandforest:block/basil_plant_stage4"
     }
   }
 }

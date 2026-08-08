@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "meadowandforest:item/basil_plant"
+    "layer0": "meadowandforest:block/basil_plant_stage4"
   }
 }

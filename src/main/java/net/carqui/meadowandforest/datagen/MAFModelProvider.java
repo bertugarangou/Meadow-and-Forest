@@ -113,15 +113,14 @@ public class MAFModelProvider extends ModelProvider {
             );
         });
 
-        //basil plant - simple 2-stage crop-style model (age 0 / age 1)
         Block basilPlant = MAFBlocks.BASIL_PLANT.get();
-        blockModels.registerSimpleFlatItemModel(basilPlant.asItem());
+        blockModels.registerSimpleFlatItemModel(basilPlant, "_stage4" );
         blockModels.blockStateOutput.accept(
                 MultiVariantGenerator.dispatch(basilPlant).with(
                         PropertyDispatch.initial(net.carqui.meadowandforest.block.MAFBasilPlantBlock.AGE)
                                 .generate(age -> BlockModelGenerators.plainVariant(
                                         blockModels.createSuffixedVariant(
-                                                basilPlant, "_stage" + age, ModelTemplates.CROP, TextureMapping::crop)))
+                                                basilPlant, "_stage" + age, ModelTemplates.CROSS, TextureMapping::cross)))
                 )
         );
 
