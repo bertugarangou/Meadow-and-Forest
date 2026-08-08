@@ -48,8 +48,13 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
     // Vanilla 0-1 integer property (the same one Bamboo uses for its small/large stalk state).
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, MAX_AGE);
 
-    private static final VoxelShape SHAPE_YOUNG = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
-    private static final VoxelShape SHAPE_MATURE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 10.0D, 13.0D);
+    private static final VoxelShape[] SHAPES_BY_AGE = new VoxelShape[]{
+            Block.box(6.0D, 0.0D, 6.0D, 10.0D, 6.5D, 10.0D),     // age 0: w=2, h=4
+            Block.box(5.0D, 0.0D, 5.0D, 11.0D, 9.5D, 10.5D),   // age 1: w=5, h=8
+            Block.box(3.5D, 0.0D, 3.5D, 12.5D, 12.0D, 12.5D),  // age 2: w=8, h=12
+            Block.box(2.5D, 0.0D, 2.5D, 13.5D, 15.0D, 13.5D),  // age 3: w=10, h=15
+            Block.box(1.5D, 0.0D, 1.5D, 14.5D, 16.0D, 14.5D)   // age 4: w=12, h=16
+    };
 
     // Chance denominator for growth on a random tick (1 in N random ticks -> grows one stage).
     private static final int GROWTH_CHANCE_DENOMINATOR = 8;
@@ -102,7 +107,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
      */
     @Override
     protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
-        return state.getValue(AGE) >= MAX_AGE ? SHAPE_MATURE : SHAPE_YOUNG;
+        return SHAPES_BY_AGE[state.getValue(AGE)];
     }
 
     // Can be planted on grass/dirt-type blocks, farmland, moss, etc. - the same set of
@@ -137,7 +142,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
 
     // Right-clicking a mature plant with Shears harvests leaves without destroying it.
     /**
-     * Handles shearing a mature plant: drops 1-2 leaves (always 2 next to a Tomato Crop),
+     * Handles shearing a mature plant: drops 1-2 leaves (always 3 next to a Tomato Crop),
      * damages the shears, and resets the plant to age 0 instead of breaking it.
      */
     @Override
@@ -150,7 +155,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
                 int leafCount;
                 if (nextToTomato) {
                     // Always 2 leaves when grown next to a tomato crop.
-                    leafCount = 2;
+                    leafCount = 3;
                 } else {
                     // 50% chance for 1 leaf, 50% chance for 2 leaves.
                     leafCount = level.getRandom().nextBoolean() ? 1 : 2;
@@ -164,7 +169,7 @@ public class MAFBasilPlantBlock extends BushBlock implements BonemealableBlock {
                 stack.hurtAndBreak(1, player, slot);
 
                 // Harvesting does not destroy the plant - it resets to age 0 and regrows.
-                level.setBlock(pos, state.setValue(AGE, 0), Block.UPDATE_CLIENTS);
+                level.setBlock(pos, state.setValue(AGE, 2), Block.UPDATE_CLIENTS);
             }
             return InteractionResult.SUCCESS;
         }
