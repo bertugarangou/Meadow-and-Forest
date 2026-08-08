@@ -128,11 +128,11 @@ public class MAFDryingTrayBlockEntity extends BlockEntity {
                         pos.getX() + 0.5,
                         pos.getY() + 0.8,
                         pos.getZ() + 0.5,
-                        8,
+                        5,
                         0.2,
                         0.2,
                         0.2,
-                        0.02
+                        0.03
 
                 );
             } else {
