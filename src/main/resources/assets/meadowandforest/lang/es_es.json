@@ -35,5 +35,7 @@
   "item.meadowandforest.basil_leaves": "Hojas de albahaca",
   "item.meadowandforest.basil_leaves_dried": "Hojas de albahaca asecadas",
   "block.meadowandforest.drying_tray": "Bandeja de secado",
-  "block.meadowandforest.basil_plant": "Alfábega"
+  "block.meadowandforest.basil_plant": "Alfábega",
+  "tooltip.meadowandforest.tomato_seeds.tooltip": "Plantalas para hacer crecer Tomates"
+
 }

@@ -35,5 +35,7 @@
   "item.meadowandforest.basil_leaves": "Fulles d'alfàbrega",
   "item.meadowandforest.basil_leaves_dried": "Fulles d'alfàbrega assequades",
   "block.meadowandforest.drying_tray": "Safata d'assecar",
-  "block.meadowandforest.basil_plant": "Alfàbrega"
+  "block.meadowandforest.basil_plant": "Alfàbrega",
+  "tooltip.meadowandforest.tomato_seeds.tooltip": "Planta-les per fer créixer Tomates"
+
 }

@@ -2,16 +2,22 @@ package net.carqui.meadowandforest.item;
 
 import net.carqui.meadowandforest.MAF;
 import net.carqui.meadowandforest.block.MAFBlocks;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Consumer;
 
 /**
  * Central item registry for the mod: seeds, foods, and other standalone items
@@ -22,13 +28,20 @@ public class MAFItems {
 
 
     public static final DeferredItem<Item> TOMATO_SEEDS = ITEMS.registerItem("tomato_seeds",
-            properties -> new BlockItem(MAFBlocks.TOMATO_CROP.get(), properties));
+            properties -> new BlockItem(MAFBlocks.TOMATO_CROP.get(), properties){
+                @Override
+                public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+                    builder.accept(Component.translatable("tooltip.meadowandforest.tomato_seeds.tooltip"));
+                    super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
+                }
+            });
 
     public static final DeferredItem<Item> TOMATO = ITEMS.registerSimpleItem("tomato",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(2)
                     .saturationModifier(0.3f)
-                    .build()));
+                    .build())
+            );
     public static final DeferredItem<Item> VINE_TOMATO = ITEMS.registerSimpleItem("vine_tomato",
             props -> props.food(new FoodProperties.Builder()
                     .nutrition(1)

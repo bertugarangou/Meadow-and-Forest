@@ -34,5 +34,6 @@
   "item.meadowandforest.tomato_soup": "Tomato Soup",
   "item.meadowandforest.vine_tomato": "Vine Tomato",
   "item.meadowandforest.whole_bread": "Whole Bread",
-  "item.meadowandforest.xava_aberration": "Xava Aberration"
+  "item.meadowandforest.xava_aberration": "Xava Aberration",
+  "tooltip.meadowandforest.tomato_seeds.tooltip": "Plant them to get Tomatoes"
 }
