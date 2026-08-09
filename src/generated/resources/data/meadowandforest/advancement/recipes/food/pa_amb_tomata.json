@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pa_amb_tomata"
+        "recipe": "meadowandforest:pa_amb_tomata"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -37,7 +37,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:pa_amb_tomata"
+      "meadowandforest:pa_amb_tomata"
     ]
   }
 }

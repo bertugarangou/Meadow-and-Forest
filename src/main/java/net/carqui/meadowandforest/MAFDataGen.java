@@ -6,6 +6,7 @@ import net.carqui.meadowandforest.loot.SeedSwapLootModifier;
 import net.carqui.meadowandforest.worldgen.MAFBiomeModifiers;
 import net.carqui.meadowandforest.worldgen.MAFConfiguredFeatures;
 import net.carqui.meadowandforest.worldgen.MAFPlacedFeatures;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -20,6 +21,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.common.data.GlobalLootModifierProvider;
 import net.neoforged.neoforge.common.loot.LootTableIdCondition;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -66,6 +68,8 @@ public class MAFDataGen {
         generator.addProvider(true, new MAFLanguageProvider(packOutput, "en_us"));
 
         generator.addProvider(true, new MAFRecipes.Runner(packOutput, lookupProvider));
+
+        generator.addProvider(true, new MAFDataMapProvider(packOutput, lookupProvider));
 
         // When grass drops wheat seeds, 12% of the time swap it for a tomato seed instead (88% wheat / 12% tomato).
         generator.addProvider(true, new GlobalLootModifierProvider(packOutput, lookupProvider, MAF.MOD_ID) {

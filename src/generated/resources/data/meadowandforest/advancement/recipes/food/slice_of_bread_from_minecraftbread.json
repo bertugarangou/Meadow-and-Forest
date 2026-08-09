@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_half_a_bread": {
+    "has_bread": {
       "conditions": {
         "items": [
           {
-            "items": "meadowandforest:half_a_bread"
+            "items": "minecraft:bread"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:slice_of_bread_from_half_bread"
+        "recipe": "meadowandforest:slice_of_bread_from_minecraftbread"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_half_a_bread"
+      "has_bread"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:slice_of_bread_from_half_bread"
+      "meadowandforest:slice_of_bread_from_minecraftbread"
     ]
   }
 }

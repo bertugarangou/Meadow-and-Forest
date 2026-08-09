@@ -127,17 +127,17 @@ public class MAFRecipes extends RecipeProvider {
                 .requires(MAFItems.WHOLE_BREAD.get())
                 .unlockedBy(getHasName(MAFItems.WHOLE_BREAD.get()), has(MAFItems.WHOLE_BREAD.get()))
                 .group("slice_of_bread")
-                .save(output, "slice_of_bread_from_whole_bread");
+                .save(output, "meadowandforest:slice_of_bread_from_whole_bread");
         shapeless(RecipeCategory.FOOD, MAFItems.SLICE_OF_BREAD.get(), 4)
                 .requires(MAFItems.HALF_BREAD.get())
                 .unlockedBy(getHasName(MAFItems.HALF_BREAD.get()), has(MAFItems.HALF_BREAD.get()))
                 .group("slice_of_bread")
-                .save(output, "slice_of_bread_from_half_bread");
+                .save(output, "meadowandforest:slice_of_bread_from_half_bread");
         shapeless(RecipeCategory.FOOD, MAFItems.SLICE_OF_BREAD.get(), 6)
                 .requires(Items.BREAD)
                 .unlockedBy(getHasName(Items.BREAD), has(Items.BREAD))
                 .group("slice_of_bread")
-                .save(output, "slice_of_bread_from_minecraftbread");
+                .save(output, "meadowandforest:slice_of_bread_from_minecraftbread");
 
         shapeless(RecipeCategory.FOOD, MAFItems.PA_AMB_TOMATA.get(), 1)
                 .requires(MAFItems.SLICE_OF_BREAD.get())
@@ -145,7 +145,7 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(MAFItems.SLICE_OF_BREAD.get()), has(MAFItems.SLICE_OF_BREAD.get()))
                 .unlockedBy(getHasName(MAFItems.VINE_TOMATO.get()), has(MAFItems.VINE_TOMATO.get()))
                 .group("pa_amb_tomata")
-                .save(output, "pa_amb_tomata");
+                .save(output);
 
         shapeless(RecipeCategory.FOOD, MAFItems.XAVA_ABERRATION.get(), 1)
                 .requires(MAFItems.SLICE_OF_BREAD.get())
@@ -153,7 +153,7 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(MAFItems.SLICE_OF_BREAD.get()), has(MAFItems.SLICE_OF_BREAD.get()))
                 .unlockedBy(getHasName(MAFItems.TOMATO_SOUP.get()), has(MAFItems.TOMATO_SOUP.get()))
                 .group("aberracio_xava")
-                .save(output, "aberracio_xava");
+                .save(output, "meadowandforest:aberracio_xava");
 
         shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SOUP.get(), 1)
                 .requires(MAFItems.TOMATO.get(), 3)
@@ -161,14 +161,14 @@ public class MAFRecipes extends RecipeProvider {
                 .unlockedBy(getHasName(Items.BOWL), has(Items.BOWL))
                 .unlockedBy(getHasName(MAFItems.TOMATO.get()), has(MAFItems.TOMATO.get()))
                 .group("tomato_soup")
-                .save(output, "tomato_soup_from_tomato");
+                .save(output, "meadowandforest:tomato_soup_from_tomato");
         shapeless(RecipeCategory.FOOD, MAFItems.TOMATO_SOUP.get(), 1)
                 .requires(MAFItems.VINE_TOMATO.get(), 6)
                 .requires(Items.BOWL, 1)
                 .unlockedBy(getHasName(Items.BOWL), has(Items.BOWL))
                 .unlockedBy(getHasName(MAFItems.VINE_TOMATO.get()), has(MAFItems.VINE_TOMATO.get()))
                 .group("tomato_soup")
-                .save(output, "tomato_soup_from_vine_tomato");
+                .save(output, "meadowandforest:tomato_soup_from_vine_tomato");
 
         //breaddough cooking
         cookingRecipes(output, CookingKind.FOOD, "small_bread_breaddough", MAFItems.SMALL_BREAD_BREADDOUGH.get(), MAFItems.HALF_BREAD, 0.1f, 160, "small_bread", getHasName(MAFItems.BREADDOUGH.get()), has(MAFItems.BREADDOUGH.get()));
